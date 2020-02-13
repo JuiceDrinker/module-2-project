@@ -10,10 +10,14 @@ router.use('/login', loginRouter);
 //Router to signup page
 router.use('/signup', signupRouter);
 
-
 //Router to profile page
 router.get('/my-profile', (req, res, next) => {
   res.render('profile');
+});
+
+//Router to random drink page
+router.get('/random-drink', (req, res, next) => {
+  res.render('random-drink');
 });
 
 /* GET home page */
