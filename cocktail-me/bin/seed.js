@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const Drink = require("./../models/Drink");
-const Ingridient = require("../models/Ingredient");
-const User = require("./../models/User");
 const dbName = "cocktail-me";
 const drinks = [
   {
