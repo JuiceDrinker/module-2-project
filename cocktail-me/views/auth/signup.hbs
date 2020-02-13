@@ -5,7 +5,7 @@
   <br>
   <input type="password" name="password" placeholder="Password">
   <br>
-  <input type="password" name="password" placeholder="Repeat password">
+  <input type="password" name="repeatedPassword" placeholder="Repeat password">
   <br>
   <label><input type="checkbox" name="terms" value="terms">Accept the terms and conditions.</label>
   <br>
@@ -13,3 +13,7 @@
   <br>
   <button>SIGNUP</button>
 </form>
+
+{{#if messageError}}
+<p>{{messageError}}</p>
+{{/if}}
