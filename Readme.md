@@ -47,16 +47,33 @@ User model
   name: String,
   email: String,
   password: String,
-  favorites: [FavoriteId],
+  favorites: [drinkId],
+  notes: [ {drinkId, String} ],
+  terms: true/false,
+  newsletter: true/false,
 }
 
 ```
 
-Favorites model
+Drink model
 
 ```javascript
 {
-  placeId: String,
+  name: String,
+  ingridients: [ {ingridientId, unit, amount, label} ,{special} ],
+  alcohol: true/false,
+  category: String,
+  garnish: String,
+  preparation: String,
+}
+
+```
+
+Ingridient model
+
+```javascript
+{
+  name: String,
 }
 
 ```
@@ -65,7 +82,7 @@ Favorites model
 
 ## Backlog
 
-[See the Trello board.](https://trello.com/b/Ni3giVKf/ironhackproject)
+[See the Trello board.](https://trello.com/b/DJ6K5C6p/cocktailme)
 
 <br>
 
