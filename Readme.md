@@ -28,7 +28,7 @@ Dont know what to drink tonight? We'll tell you!
 | `GET`      | `/`                                | Main page route. Renders home `index` view.                              |                                                          |
 | `GET`      | `/login`                           | Renders `login` form view.                                               |                                                          |
 | `POST`     | `/login`                           | Sends Login form data to the server.                                     | { email, password }                                      |
-| `GET`      | `/signup`                          | Renders `signup` form view.                                              |                                                          |
+| `GET`      | `/auth/signup`                     | Renders `signup` form view, if already logged in redirect to '/'         |                                                          |
 | `POST`     | `/signup`                          | Sends Sign Up info to the server and creates user in the DB.             | { email, password }                                      |
 | `GET`      | `/private/edit-profile`            | Private route. Renders `edit-profile` form view.                         |                                                          |
 | `PUT`      | `/private/edit-profile`            | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [firstName], [lastName], [imageUrl] } |
