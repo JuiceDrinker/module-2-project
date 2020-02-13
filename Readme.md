@@ -23,20 +23,23 @@ Dont know what to drink tonight? We'll tell you!
 
 ## API Routes (Back-end):
 
-| **Method** | **Route**                          | **Description**                                                          | Request - Body                                           |
-| ---------- | ---------------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------- |
-| `GET`      | `/`                                | Main page route. Renders home `index` view.                              |                                                          |
-| `GET`      | `/login`                           | Renders `login` form view.                                               |                                                          |
-| `POST`     | `/login`                           | Sends Login form data to the server.                                     | { email, password }                                      |
-| `GET`      | `/auth/signup`                     | Renders `signup` form view, if already logged in redirect to '/'         |                                                          |
-| `POST`     | `/signup`                          | Sends Sign Up info to the server and creates user in the DB.             | { email, password }                                      |
-| `GET`      | `/private/edit-profile`            | Private route. Renders `edit-profile` form view.                         |                                                          |
-| `PUT`      | `/private/edit-profile`            | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [firstName], [lastName], [imageUrl] } |
-| `GET`      | `/private/favorites`               | Private route. Render the `favorites` view.                              |                                                          |
-| `POST`     | `/private/favorites/`              | Private route. Adds a new favorite for the current user.                 | { name, cuisine, city, }                                 |
-| `DELETE`   | `/private/favorites/:restaurantId` | Private route. Deletes the existing favorite from the current user.      |                                                          |
-| `GET`      | `/restaurants`                     | Renders `restaurant-list` view.                                          |                                                          |
-| `GET`      | `/restaurants/details/:id`         | Render `restaurant-details` view for the particular restaurant.          |                                                          |
+| **Method** | **Route**                     | **Description**                                                          | Request - Body                  |
+| ---------- | ----------------------------- | ------------------------------------------------------------------------ | ------------------------------- |
+| `GET`      | `/`                           | Main page route. Renders home `index` view.                              |                                 |
+| `GET`      | `/auth/login`                 | Renders `login` form view.                                               |                                 |
+| `POST`     | `/auth/login`                 | Sends Login form data to the server.                                     | { email, password }             |
+| `GET`      | `/auth/signup`                | Renders `signup` form view, if already logged in redirect to '/'         |                                 |
+| `POST`     | `/signup`                     | Sends Sign Up info to the server and creates user in the DB.             | { email, password }             |
+| `GET`      | `/private/profile`            | Private route. Renders `edit-profile` form view.                         |                                 |
+| `PUT`      | `/private/profile`            | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [imageUrl] } |
+| `GET`      | `/private/favorites`          | Private route. Render the `favorites` view.                              |                                 |
+| `POST`     | `/private/favorites/`         | Private route. Adds a new favorite for the current user.                 | { userID, drinkID }             |
+| `DELETE`   | `/private/favorites/:drinkID` | Private route. Deletes the existing favorite from the current user.      |                                 |
+| `GET`      | `/random-drink`               | Renders `random-drink` view.                                             |                                 |
+| `GET`      | `/add-drink`                  | Renders `add-drink` view                                                 |                                 |
+| `POST`     | `/add-drink`                  | Adds a drink to the user/global database depending on user wishes        |                                 |
+| `GET`      | `/drink/:id`                  | Renders `random-drink` view.                                             |                                 |
+| `PUT`      | `/drink/:id`                  | Renders `random-drink` view.                                             |                                 |
 
 ## Models
 
