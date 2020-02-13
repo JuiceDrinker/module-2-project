@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
 const Drink = require("./../models/Drink");
-const Ingridient = require("./../models/Ingridient");
+const Ingridient = require("../models/Ingredient");
 const User = require("./../models/User");
 const dbName = "cocktail-me";
-let counter = 0;
 const drinks = [
   {
     name: "Vesper",
@@ -1099,7 +1098,7 @@ const drinks = [
 drinks.forEach(oneDrink => {
   oneDrink.alcohol = true;
   oneDrink.userID = null;
-  oneDrink.ingridient.forEach(oneIngredient => {
+  oneDrink.ingredients.forEach(oneIngredient => {
     oneIngredient.ingredientInfo = null;
   });
 });
@@ -1110,7 +1109,7 @@ mongoose
     useUnifiedTopology: true
   })
   .then(() => {
-    return drinks.create(drinks);
+    return Drink.create(drinks);
   })
   .then(createdDrinks => {
     console.log(`Inserted ${createdDrinks.length} into database`);
@@ -1119,4 +1118,6 @@ mongoose
   .then(() => {
     console.log("Connection closed succesfully!");
   })
-  .catch(err => {});
+  .catch(err => {
+    console.log(err);
+  });
