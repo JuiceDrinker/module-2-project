@@ -10,6 +10,11 @@ router.use('/login', loginRouter);
 //Router to signup page
 router.use('/signup', signupRouter);
 
+//Router to add drink form page
+router.get('/add-drink', (req, res, next) => {
+  res.render('add-drink-form');
+});
+
 //Router to profile page
 router.get('/my-profile', (req, res, next) => {
   res.render('profile');
