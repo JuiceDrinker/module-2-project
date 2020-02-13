@@ -10,6 +10,16 @@ router.use('/login', loginRouter);
 //Router to signup page
 router.use('/signup', signupRouter);
 
+//Router to POST a drink
+router.post("/add-drink", (req, res, next) => {
+  const {name, glass, category, ingredient, amount, unit, garnish, preparation, alcohol} = req.body;
+
+  if (name === "" || ingredient === "" || amount === "" || unit === "") {
+    res.render("add-drink-form", {messageError: "You need to complete the require (*) info."})
+    return;
+  }
+});
+
 //Router to add drink form page
 router.get('/add-drink', (req, res, next) => {
   res.render('add-drink-form');

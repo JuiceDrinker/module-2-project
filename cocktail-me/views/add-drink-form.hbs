@@ -1,20 +1,25 @@
 <h1>ADD NEW DRINK</h1>
 <form action="/add-drink" method="post">
-  <input type="text" name="name" placeholder="Drink name">
+  <input type="text" name="name" placeholder="Drink name *">
   <br>
   <input type="text" name="glass" placeholder="Type of glass">
   <br>
   <input type="text" name="category" placeholder="Category">
   <br>
-  <input type="text" name="ingredient" placeholder="Ingredient name">
+  <input type="text" name="ingredient" placeholder="Ingredient name *">
   <br>
-  <input type="number" name="amount" placeholder="Amount">
+  <input type="number" name="amount" placeholder="Amount *">
   <br>
-  <input type="text" name="unit" placeholder="Unit">
+  <input type="text" name="unit" placeholder="Unit *">
   <br>
   <input type="text" name="garnish" placeholder="Garnish">
   <br>
-  <input type="text" name="preparation" placeholder="Preparation">
+  <input type="text" name="preparation" placeholder="Preparation *">
   <br>
   <label><input type="checkbox" name="alcohol" checked="true" value="">Alcohol</label>
+  <button>ADD</button>
 </form>
+
+{{#if messageError}}
+<p>{{messageError}}</p>
+{{/if}}
