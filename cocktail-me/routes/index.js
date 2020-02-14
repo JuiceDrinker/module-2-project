@@ -20,6 +20,11 @@ router.post("/add-drink", (req, res, next) => {
   }
 });
 
+//Router to home page
+router.get('/home', (req, res, next) => {
+  res.render('index');
+});
+
 //Router to add drink form page
 router.get('/add-drink', (req, res, next) => {
   res.render('add-drink-form');
