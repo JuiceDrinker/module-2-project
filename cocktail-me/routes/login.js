@@ -27,7 +27,7 @@ loginRouter.post('/', (req, res, next) => {
 
       if (correctPassword) {
         req.session.currentUser = user;
-        res.redirect("/home");
+        res.redirect("/");
       } else {
         res.render("auth/login", {messageError: "Wrong password."});
         return;
@@ -35,6 +35,11 @@ loginRouter.post('/', (req, res, next) => {
     })
 
     .catch( (err) => console.log(err));
+});
+
+/* GET login page as home page */
+loginRouter.get('/', (req, res, next) => {
+  res.render('auth/login');
 });
 
 module.exports = loginRouter;
