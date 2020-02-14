@@ -1,3 +1,19 @@
 <h1>RANDOM DRINK</h1>
-<h3>{{drinkObj.name}}</h3>
+<h2>{{drinkObj.name}}</h2>
+<p>{{drinkObj.category}}</p>
+<h3>Ingredients:</h3>
+<ul>
+  {{#each drinkObj.ingredients}}
+  <li>{{this.name}} - {{this.amount}} - {{this.unit}}</li>
+  {{/each}}
+</ul>
+<h3>Preparation:</h3>
+<p>{{drinkObj.preparation}}</p>
+{{#if drinkObj.garnish}}
+  <h3>Garnish:</h3>
+  <p>{{drinkObj.garnish}}</p>
+{{/if}}
+
+<a href="/random-drink"><button>GIVE ME ANOTHER</button></a>
+<br>
 <a href="/"><button>HOME</button></a>

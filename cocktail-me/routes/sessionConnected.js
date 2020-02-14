@@ -31,20 +31,20 @@ sessionRouter.post("/add-drink", (req, res, next) => {
     });
     return;
   }
+  const ingredients = [{name: ingredient, unit, amount}]
 
   Drink.create({
     name,
     glass,
     category,
-    ingredient,
-    amount,
-    unit,
+    ingredients,
     garnish,
     preparation,
     alcohol
   })
-    .then(() => {
-      res.redirect("/");
+    .then((drink) => {
+      console.log(drink)
+      res.redirect(`/drink/${drink._id}`);
     })
     .catch(err => {
       console.log(err);
@@ -54,6 +54,23 @@ sessionRouter.post("/add-drink", (req, res, next) => {
 //Router to home page
 sessionRouter.get("/", (req, res, next) => {
   res.render("index");
+});
+
+sessionRouter.get("/drink/:id", (req, res, next) => {
+  const drinkId = req.params.id;
+  Drink.findOne({_id: drinkId})
+    .then( (drink) => {
+      res.render("drink", {drink});
+    })
+    .catch( (err) => console.log(err));
+});
+
+sessionRouter.get("/drinks", (req, res, next) => {
+  Drink.find({})
+    .then( (drinks) => {
+      res.render("find-drinks", {drinks});
+    })
+    .catch( (err) => console.log(err));
 });
 
 sessionRouter.get("/logout", (req, res, next) => {
