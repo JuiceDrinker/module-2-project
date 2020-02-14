@@ -9,7 +9,7 @@ const drinkModel = new Schema ({
     unit: {type: String},
     amount: {type: Number},
     name: {type: String},
-    ingredientInfo: {type: Schema.Types.ObjectId, ref: "Ingredient", default: null},
+    ingredientID: {type: Schema.Types.ObjectId, ref: "Ingredient", default: null},
   }],
   alcohol: {type: Boolean},
   garnish: {type: String},

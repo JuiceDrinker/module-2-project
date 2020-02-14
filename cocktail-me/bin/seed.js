@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Drink = require("./../models/Drink");
+const Ingredient = require("./../models/Ingredient");
 const dbName = "cocktail-me";
 const drinks = [
   {
@@ -1094,12 +1095,23 @@ const drinks = [
 ];
 
 drinks.forEach(oneDrink => {
-    oneDrink.alcohol = true;
+  oneDrink.alcohol = true;
   oneDrink.userID = null;
   oneDrink.ingredients.forEach(oneIngredient => {
-    oneIngredient.ingredientInfo = null;
+    // oneIngredient.ingredientInfo = null;
+    Ingredient.findOne({ name: oneIngredient.ingredient })
+      .then(result => {
+        if (result) {
+          const { _id, name } = result;
+          oneDrink.ingredients.name = name;
+          oneDrink.ingredients.ingredientID = _id;
+        }
+      })
+      .catch(err => {
+        console.log("err :", err);
+      });
   });
-  
+});
 
 mongoose
   .connect(`mongodb://localhost/${dbName}`, {
