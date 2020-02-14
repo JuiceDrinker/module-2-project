@@ -27,6 +27,16 @@ sessionRouter.get('/', (req, res, next) => {
   res.render('index');
 });
 
+sessionRouter.get("/logout", (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) {
+      res.redirect("/");
+    } else {
+      res.redirect("/login");
+    }
+  })
+})
+
 //Router to add drink form page
 sessionRouter.get('/add-drink', (req, res, next) => {
   res.render('add-drink-form');
