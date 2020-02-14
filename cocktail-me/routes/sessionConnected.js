@@ -65,6 +65,14 @@ sessionRouter.get("/drink/:id", (req, res, next) => {
     .catch( (err) => console.log(err));
 });
 
+sessionRouter.get("/drinks", (req, res, next) => {
+  Drink.find({})
+    .then( (drinks) => {
+      res.render("find-drinks", {drinks});
+    })
+    .catch( (err) => console.log(err));
+});
+
 sessionRouter.get("/logout", (req, res, next) => {
   req.session.destroy(err => {
     if (err) {
