@@ -1,6 +1,8 @@
 const express = require('express');
 const sessionRouter  = express.Router();
 
+const Drink = require("./../models/Drink");
+
 sessionRouter.use((req, res, next) => {
   if (req.session.currentUser) { 
     next();
@@ -36,8 +38,13 @@ sessionRouter.get('/my-profile', (req, res, next) => {
 });
 
 //Router to random drink page
-sessionRouter.get('/random-drink', (req, res, next) => {
-  res.render('random-drink');
+sessionRouter.get("/random-drink", (req, res, next) => {
+  Drink.aggregate([{ $sample: { size: 1 } }]) //Returns a random drink from collection "Drinks"
+    .then(randomDrinkObj => {
+      const drinkObj = randomDrinkObj[0];
+      res.render("random-drink", { drinkObj });
+    })
+    .catch(err => console.log(err));
 });
 
 module.exports = sessionRouter;
