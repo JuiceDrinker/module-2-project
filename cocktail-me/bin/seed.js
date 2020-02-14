@@ -1094,12 +1094,12 @@ const drinks = [
 ];
 
 drinks.forEach(oneDrink => {
-  oneDrink.alcohol = true;
+    oneDrink.alcohol = true;
   oneDrink.userID = null;
   oneDrink.ingredients.forEach(oneIngredient => {
     oneIngredient.ingredientInfo = null;
   });
-});
+  
 
 mongoose
   .connect(`mongodb://localhost/${dbName}`, {
