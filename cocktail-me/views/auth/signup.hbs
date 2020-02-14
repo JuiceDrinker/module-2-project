@@ -7,12 +7,14 @@
   <br>
   <input type="password" name="repeatedPassword" placeholder="Repeat password">
   <br>
-  <label><input type="checkbox" name="terms" value="terms">Accept the terms and conditions.</label>
+  <label><input id="terms" type="checkbox" name="terms" value="false">Accept the terms and conditions.</label>
   <br>
-  <label><input type="checkbox" name="news" value="news">Subscribe to our newsletter!</label>
+  <label><input id="news" type="checkbox" name="news" value="false">Subscribe to our newsletter!</label>
   <br>
   <button>SIGNUP</button>
 </form>
+
+<a href="/">Go to login page</a>
 
 {{#if messageError}}
 <p>{{messageError}}</p>
