@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Drink = require("../models/Drink");
+const Ingredient = require("../models/Ingredient");
 const dbName = "cocktail-me";
 const drinks = [
   {
@@ -1097,8 +1098,10 @@ const ingArr = []; // create a unique list of ingredients from array of drink re
 
 drinks.forEach(oneDrink => {
   oneDrink.ingredients.forEach(oneIngredient => {
-    if (!ingArr.includes(oneIngredient.ingredient))
-      ingArr.push(oneIngredient.ingredient);
+    if (oneIngredient.ingredient) {
+      if (!ingArr.includes(oneIngredient.ingredient))
+        ingArr.push(oneIngredient.ingredient);
+    }
   });
 });
 
@@ -1111,4 +1114,21 @@ ingArr.forEach(oneIngredient => {
   ingredients.push(ingObj);
 });
 
-console.log('ingredients :', ingredients);
+mongoose
+  .connect(`mongodb://localhost/${dbName}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    return Ingredient.create(ingredients);
+  })
+  .then(createdIng => {
+    console.log(`Inserted ${createdIng.length} into database`);
+  })
+  .then(() => mongoose.connection.close())
+  .then(() => {
+    console.log("Connection closed succesfully!");
+  })
+  .catch(err => {
+    console.log(err);
+  });
