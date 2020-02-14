@@ -35,9 +35,9 @@ router.get('/random-drink', (req, res, next) => {
   res.render('random-drink');
 });
 
-/* GET home page */
+/* GET login page as home page */
 router.get('/', (req, res, next) => {
-  res.render('index');
+  res.render('auth/login');
 });
 
 
