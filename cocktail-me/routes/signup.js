@@ -28,6 +28,17 @@ signupRouter.post("/", (req, res, next) => {
     });
     return;
   }
+
+  User.findOne({ email })
+    .then(user => {
+      if (user) {
+        res.render("auth/signup", {
+          messageError: "This email is already taken"
+        });
+      }
+    })
+    .catch(err => console.log(err));
+    
   User.findOne({ username })
     .then(user => {
       if (user) {
