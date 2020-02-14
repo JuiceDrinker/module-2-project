@@ -34,7 +34,7 @@ signupRouter.post("/", (req, res, next) => {
       const salt = bcrypt.genSaltSync(saltRounds);
       const hashedPassword = bcrypt.hashSync(password, salt);
 
-      User.create({ username, email, hashedPassword, terms, news })
+      User.create({ username, password: hashedPassword, email })
         .then( (user) => {
           res.redirect("/");
         })
