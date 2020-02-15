@@ -40,7 +40,9 @@ sessionRouter.post("/add-drink", (req, res, next) => {
     ingredients,
     garnish,
     preparation,
-    alcohol
+    alcohol,
+    private: true,
+    userId: req.session.currentUser._id,
   })
     .then((drink) => {
       console.log(drink)
