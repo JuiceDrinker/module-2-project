@@ -1097,37 +1097,36 @@ const drinks = [
 drinks.forEach(oneDrink => {
   oneDrink.alcohol = true;
   oneDrink.userID = null;
-  oneDrink.ingredients.forEach(oneIngredient => {
-    // oneIngredient.ingredientInfo = null;
-    Ingredient.findOne({ name: oneIngredient.ingredient })
-      .then(result => {
-        if (result) {
+  oneDrink.ingredients.forEach((oneIngredient, index) => {
+    if ("ingredient" in oneIngredient) {
+      //Dont insert special into ingredients
+      Ingredient.findOne({ name: oneIngredient.ingredient })
+        .then(result => {
           const { _id, name } = result;
-          oneDrink.ingredients.name = name;
-          oneDrink.ingredients.ingredientID = _id;
-        }
-      })
-      .catch(err => {
-        console.log("err :", err);
-      });
+          oneDrink.ingredients[index].name = name;
+          oneDrink.ingredients[index].ingredientID = _id;
+          console.log("oneDrink", oneDrink);
+        })
+        .then(() => {
+          mongoose
+            .connect(`mongodb://localhost/${dbName}`, {
+              useNewUrlParser: true,
+              useUnifiedTopology: true
+            })
+            .then(() => {
+              return Drink.create(drinks);
+            })
+            .then(createdDrinks => {
+              console.log(`Inserted ${createdDrinks.length} into database`);
+            })
+            .then(() => mongoose.connection.close())
+            .then(() => {
+              console.log("Connection closed succesfully!");
+            });
+        })
+        .catch(err => {
+          console.log("err :", err);
+        });
+    }
   });
 });
-
-mongoose
-  .connect(`mongodb://localhost/${dbName}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    return Drink.create(drinks);
-  })
-  .then(createdDrinks => {
-    console.log(`Inserted ${createdDrinks.length} into database`);
-  })
-  .then(() => mongoose.connection.close())
-  .then(() => {
-    console.log("Connection closed succesfully!");
-  })
-  .catch(err => {
-    console.log(err);
-  });
