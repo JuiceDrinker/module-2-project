@@ -33,24 +33,32 @@ sessionRouter.post("/add-drink", (req, res, next) => {
   }
   const ingredients = [{name: ingredient, unit, amount}]
 
-  Drink.create({
-    name,
-    glass,
-    category,
-    ingredients,
-    garnish,
-    preparation,
-    alcohol,
-    private: true,
-    userId: req.session.currentUser._id,
-  })
-    .then((drink) => {
-      console.log(drink)
-      res.redirect(`/drink/${drink._id}`);
+  Drink.findOne({name})
+    .then( (drink) => {
+      if (drink) {
+        res.render("add-drink-form", {messageError: "This drink name already exists."});
+        return;
+      }
+
+      Drink.create({
+        name,
+        glass,
+        category,
+        ingredients,
+        garnish,
+        preparation,
+        alcohol,
+        private: true,
+        userId: req.session.currentUser._id,
+      })
+        .then((drink) => {
+          res.redirect(`/drink/${drink._id}`);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     })
-    .catch(err => {
-      console.log(err);
-    });
+    .catch( (err) => console.log(err));
 });
 
 //Router to home page
