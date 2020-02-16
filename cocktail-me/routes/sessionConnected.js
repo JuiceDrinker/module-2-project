@@ -90,9 +90,13 @@ sessionRouter.get("/search-drinks", (req, res, next) => {
 });
 
 sessionRouter.get("/drinks", (req, res, next) => {
-  Drink.find({})
-    .then( (drinks) => {
-      res.render("all-drinks", {drinks});
+  Drink.find({private: false})
+    .then( (publicDrinks) => {
+      Drink.find({userId: req.session.currentUser})
+        .then( (userDrinks) => {
+          res.render("all-drinks", {publicDrinks, userDrinks});
+        })
+        .catch( (err) => console.log(err));
     })
     .catch( (err) => console.log(err))
 });
