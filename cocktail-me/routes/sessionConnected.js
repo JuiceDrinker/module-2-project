@@ -115,8 +115,8 @@ sessionRouter.get("/", (req, res, next) => {
   res.render("index");
 });
 
-sessionRouter.get("/drink/:id", (req, res, next) => {
-  const drinkId = req.params.id;
+sessionRouter.get("/drink/:drinkId", (req, res, next) => {
+  const drinkId = req.params.drinkId;
   Drink.findOne({_id: drinkId})
     .then( (drink) => {
       res.render("drink", {drink});
