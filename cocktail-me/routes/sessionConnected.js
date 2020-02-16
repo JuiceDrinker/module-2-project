@@ -2,6 +2,7 @@ const express = require("express");
 const sessionRouter = express.Router();
 
 const Drink = require("./../models/Drink");
+const User = require("./../models/User");
 
 sessionRouter.use((req, res, next) => {
   if (req.session.currentUser) {
@@ -52,7 +53,11 @@ sessionRouter.post("/add-drink", (req, res, next) => {
         userId: req.session.currentUser._id,
       })
         .then((drink) => {
-          res.redirect(`/drink/${drink._id}`);
+          User.findOneAndUpdate({_id: user._id}, {$push: {privateDrinks: {drinkId: drink._id}}})
+            .then( () => {
+              res.redirect(`/drink/${drink._id}`);
+            })
+            .catch( (err) => console.log(err));
         })
         .catch(err => {
           console.log(err);
