@@ -2,6 +2,7 @@ const express = require("express");
 const sessionRouter = express.Router();
 
 const Drink = require("./../models/Drink");
+const Ingredient = require("./../models/Ingredient");
 const User = require("./../models/User");
 
 sessionRouter.use((req, res, next) => {
@@ -81,11 +82,11 @@ sessionRouter.get("/drink/:id", (req, res, next) => {
 });
 
 sessionRouter.get("/drinks", (req, res, next) => {
-  Drink.find({})
-    .then( (drinks) => {
-      res.render("find-drinks", {drinks});
+  Ingredient.find({})
+    .then( (ingredients) => {
+      res.render("find-drinks", {ingredients});
     })
-    .catch( (err) => console.log(err));
+    .catch( (err) => console.log(err))
 });
 
 sessionRouter.get("/logout", (req, res, next) => {

@@ -1,8 +1,9 @@
 <h1>FIND YOUR DRINK</h1>
-<ul>
-  {{#each drinks}}
-    <li> <a href="/drink/{{this._id}}">{{this.name}}</a> </li>
-  {{/each}}
-</ul>
-
+<p>Select your ingredients:</p>
+{{#each ingredients}}
+  <label><input type="checkbox" name="ingredient">{{this.name}}</label>
+{{/each}}
+<br>
+<a href="/"><button>FIND</button></a>
+<br>
 <a href="/"><button>HOME</button></a>
