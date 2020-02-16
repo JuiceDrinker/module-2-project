@@ -67,6 +67,15 @@ sessionRouter.post("/add-drink", (req, res, next) => {
     .catch( (err) => console.log(err));
 });
 
+//Router to modify one drink
+sessionRouter.get("/modify-drink/:drinkId", (req, res, next) => {
+  Drink.findById(req.params.drinkId)
+    .then( (drink) => {
+      res.render("modify-drink-form", {drink});
+    })
+    .catch( (err) => console.log(err));
+});
+
 //Router to home page
 sessionRouter.get("/", (req, res, next) => {
   res.render("index");

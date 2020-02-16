@@ -1,0 +1,22 @@
+<h1>MODIFY THIS DRINK</h1>
+<input type="text" name="name" value="{{drink.name}}">
+<h3>Category:</h3>
+<p><input type="text" name="category" value="{{drink.category}}"></p>
+<h3>Ingredients:</h3>
+<ul>
+  {{#each drink.ingredients}}
+  <li><input type="text" name="ingredient" value="{{this.name}}"> - <input type="text" name="amount" value="{{this.amount}}"> - <input type="text" name="unit" value="{{this.unit}}"></li>
+  {{/each}}
+</ul>
+<h3>Preparation:</h3>
+<p><input type="text" name="preparation" value="{{drink.preparation}}"></p>
+{{#if drink.garnish}}
+  <h3>Garnish:</h3>
+  <p><input type="text" name="garnish" value="{{drink.garnish}}"></p>
+{{/if}}
+
+<a href="/modify-drink/{{drink._id}}"><button>ACCEPT</button></a>
+<br>
+<a href="/drinks"><button>BACK</button></a>
+<br>
+<a href="/"><button>HOME</button></a>
