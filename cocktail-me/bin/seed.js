@@ -2,15 +2,15 @@ const mongoose = require("mongoose");
 const Drink = require("./../models/Drink");
 const Ingredient = require("./../models/Ingredient");
 const dbName = "cocktail-me";
-const drinks = [
+let drinks = [
   {
     name: "Vesper",
     glass: "martini",
     category: "Before Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 6, ingredient: "Gin" },
-      { unit: "cl", amount: 1.5, ingredient: "Vodka" },
-      { unit: "cl", amount: 0.75, ingredient: "Lillet Blonde" }
+      { unit: "cl", amount: 6, name: "Gin" },
+      { unit: "cl", amount: 1.5, name: "Vodka" },
+      { unit: "cl", amount: 0.75, name: "Lillet Blonde" }
     ],
     garnish: "Lemon twist",
     preparation: "Shake and strain into a chilled cocktail glass."
@@ -23,11 +23,11 @@ const drinks = [
       {
         unit: "cl",
         amount: 4.5,
-        ingredient: "White rum",
+        name: "White rum",
         label: "Bacardi White Rum"
       },
-      { unit: "cl", amount: 2, ingredient: "Lime juice" },
-      { unit: "cl", amount: 1, ingredient: "Syrup", label: "Grenadine" }
+      { unit: "cl", amount: 2, name: "Lime juice" },
+      { unit: "cl", amount: 1, name: "Syrup", label: "Grenadine" }
     ],
     preparation: "Shake with ice cubes. Strain into chilled cocktail glass."
   },
@@ -36,12 +36,12 @@ const drinks = [
     glass: "old-fashioned",
     category: "Before Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 3, ingredient: "Gin" },
-      { unit: "cl", amount: 3, ingredient: "Campari" },
+      { unit: "cl", amount: 3, name: "Gin" },
+      { unit: "cl", amount: 3, name: "Campari" },
       {
         unit: "cl",
         amount: 3,
-        ingredient: "Vermouth",
+        name: "Vermouth",
         label: "Sweet red vermouth"
       }
     ],
@@ -52,8 +52,8 @@ const drinks = [
     name: "Rose",
     glass: "martini",
     ingredients: [
-      { unit: "cl", amount: 2, ingredient: "Kirsch" },
-      { unit: "cl", amount: 4, ingredient: "Vermouth", label: "Dry vermouth" },
+      { unit: "cl", amount: 2, name: "Kirsch" },
+      { unit: "cl", amount: 4, name: "Vermouth", label: "Dry vermouth" },
       { special: "3 dashes Strawberry syrup" }
     ],
     preparation:
@@ -67,7 +67,7 @@ const drinks = [
       {
         unit: "cl",
         amount: 4.5,
-        ingredient: "Whiskey",
+        name: "Whiskey",
         label: "Bourbon or rye whiskey"
       },
       { special: "2 dashes Angostura Bitters" },
@@ -83,8 +83,8 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 3, ingredient: "Gin", label: "Old Tom Gin" },
-      { unit: "cl", amount: 3, ingredient: "Vermouth", label: "Dry vermouth" },
+      { unit: "cl", amount: 3, name: "Gin", label: "Old Tom Gin" },
+      { unit: "cl", amount: 3, name: "Vermouth", label: "Dry vermouth" },
       { special: "1/2 bar spoon Maraschino" },
       { special: "1/4 bar spoon Absinthe" },
       { special: "3 dashes Orange Bitters" }
@@ -100,10 +100,10 @@ const drinks = [
       {
         unit: "cl",
         amount: 4,
-        ingredient: "White rum",
+        name: "White rum",
         label: "White Cuban Rum"
       },
-      { unit: "cl", amount: 3, ingredient: "Lime juice" },
+      { unit: "cl", amount: 3, name: "Lime juice" },
       { special: "6 Mint sprigs" },
       { special: "2 teaspoons white sugar" },
       { special: "Soda water" }
@@ -117,8 +117,8 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 4, ingredient: "Cognac" },
-      { unit: "cl", amount: 12, ingredient: "Ginger Ale" },
+      { unit: "cl", amount: 4, name: "Cognac" },
+      { unit: "cl", amount: 12, name: "Ginger Ale" },
       { special: "Dash of Angostura bitters (optional)" }
     ],
     garnish: "Lemon twist",
@@ -130,12 +130,12 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "Dark rum" },
-      { unit: "cl", amount: 3.5, ingredient: "Orange juice" },
-      { unit: "cl", amount: 3.5, ingredient: "Pineapple juice" },
-      { unit: "cl", amount: 2, ingredient: "Lemon juice" },
-      { unit: "cl", amount: 1, ingredient: "Syrup", label: "Grenadine" },
-      { unit: "cl", amount: 1, ingredient: "Syrup", label: "Sugar syrup" },
+      { unit: "cl", amount: 4.5, name: "Dark rum" },
+      { unit: "cl", amount: 3.5, name: "Orange juice" },
+      { unit: "cl", amount: 3.5, name: "Pineapple juice" },
+      { unit: "cl", amount: 2, name: "Lemon juice" },
+      { unit: "cl", amount: 1, name: "Syrup", label: "Grenadine" },
+      { unit: "cl", amount: 1, name: "Syrup", label: "Sugar syrup" },
       { special: "3 to 4 dashes Angostura bitters" }
     ],
     garnish: "Pineapple slice and a cherry",
@@ -147,9 +147,9 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 4, ingredient: "Vodka" },
-      { unit: "cl", amount: 12, ingredient: "Cranberry juice" },
-      { unit: "cl", amount: 3, ingredient: "Grapefruit juice" }
+      { unit: "cl", amount: 4, name: "Vodka" },
+      { unit: "cl", amount: 12, name: "Cranberry juice" },
+      { unit: "cl", amount: 3, name: "Grapefruit juice" }
     ],
     garnish: "Lime wedge",
     preparation: "Build all ingredients in a rock glass filled with ice."
@@ -159,9 +159,9 @@ const drinks = [
     glass: "old-fashioned",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "Pisco" },
-      { unit: "cl", amount: 3, ingredient: "Lemon juice" },
-      { unit: "cl", amount: 2, ingredient: "Syrup", label: "Sugar syrup" },
+      { unit: "cl", amount: 4.5, name: "Pisco" },
+      { unit: "cl", amount: 3, name: "Lemon juice" },
+      { unit: "cl", amount: 2, name: "Syrup", label: "Sugar syrup" },
       { special: "1 raw egg white (small egg)" }
     ],
     preparation:
@@ -172,13 +172,13 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 1.5, ingredient: "Tequila" },
-      { unit: "cl", amount: 1.5, ingredient: "Vodka" },
-      { unit: "cl", amount: 1.5, ingredient: "White rum" },
-      { unit: "cl", amount: 1.5, ingredient: "Triple Sec" },
-      { unit: "cl", amount: 1.5, ingredient: "Gin" },
-      { unit: "cl", amount: 2.5, ingredient: "Lemon juice" },
-      { unit: "cl", amount: 3.0, ingredient: "Syrup", label: "Gomme syrup" },
+      { unit: "cl", amount: 1.5, name: "Tequila" },
+      { unit: "cl", amount: 1.5, name: "Vodka" },
+      { unit: "cl", amount: 1.5, name: "White rum" },
+      { unit: "cl", amount: 1.5, name: "Triple Sec" },
+      { unit: "cl", amount: 1.5, name: "Gin" },
+      { unit: "cl", amount: 2.5, name: "Lemon juice" },
+      { unit: "cl", amount: 3.0, name: "Syrup", label: "Gomme syrup" },
       { special: "1 dash of Cola" }
     ],
     garnish: "Lemon twist",
@@ -190,14 +190,14 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "Gin" },
+      { unit: "cl", amount: 4.5, name: "Gin" },
       {
         unit: "cl",
         amount: 1.5,
-        ingredient: "Syrup",
+        name: "Syrup",
         label: "Raspberry syrup"
       },
-      { unit: "cl", amount: 1.5, ingredient: "Lemon juice" },
+      { unit: "cl", amount: 1.5, name: "Lemon juice" },
       { special: "Few drops of Egg White" }
     ],
     preparation: "Shake with ice cubes. Strain into cocktail glass."
@@ -207,9 +207,9 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 3, ingredient: "Gin" },
-      { unit: "cl", amount: 3, ingredient: "Apricot brandy" },
-      { unit: "cl", amount: 3, ingredient: "Calvados" }
+      { unit: "cl", amount: 3, name: "Gin" },
+      { unit: "cl", amount: 3, name: "Apricot brandy" },
+      { unit: "cl", amount: 3, name: "Calvados" }
     ],
     preparation: "Shake with ice cubes. Strain into a cocktail glass."
   },
@@ -218,8 +218,8 @@ const drinks = [
     glass: "champagne-flute",
     category: "Sparkling Cocktail",
     ingredients: [
-      { unit: "cl", amount: 7.5, ingredient: "Champagne" },
-      { unit: "cl", amount: 7.5, ingredient: "Orange juice" }
+      { unit: "cl", amount: 7.5, name: "Champagne" },
+      { unit: "cl", amount: 7.5, name: "Orange juice" }
     ],
     garnish: "Optional orange twist",
     preparation:
@@ -233,11 +233,11 @@ const drinks = [
       {
         unit: "cl",
         amount: 4.5,
-        ingredient: "Whiskey",
+        name: "Whiskey",
         label: "Bourbon whiskey"
       },
-      { unit: "cl", amount: 3.0, ingredient: "Lemon juice" },
-      { unit: "cl", amount: 1.5, ingredient: "Syrup", label: "Sugar syrup" }
+      { unit: "cl", amount: 3.0, name: "Lemon juice" },
+      { unit: "cl", amount: 1.5, name: "Syrup", label: "Sugar syrup" }
     ],
     garnish: "Half an orange slice and cherry",
     preparation:
@@ -248,8 +248,8 @@ const drinks = [
     glass: "highball",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 5, ingredient: "Vodka" },
-      { unit: "cl", amount: 10, ingredient: "Orange juice" }
+      { unit: "cl", amount: 5, name: "Vodka" },
+      { unit: "cl", amount: 10, name: "Orange juice" }
     ],
     garnish: "Orange slice",
     preparation: "Build into a highball glass filled with ice. Stir gently."
@@ -259,9 +259,9 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 5, ingredient: "White rum" },
-      { unit: "cl", amount: 12, ingredient: "Cola" },
-      { unit: "cl", amount: 1, ingredient: "Lime juice" }
+      { unit: "cl", amount: 5, name: "White rum" },
+      { unit: "cl", amount: 12, name: "Cola" },
+      { unit: "cl", amount: 1, name: "Lime juice" }
     ],
     garnish: "Lime wedge",
     preparation: "Build all ingredients in a highball glass filled with ice."
@@ -271,8 +271,8 @@ const drinks = [
     glass: "martini",
     category: "Before Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 5, ingredient: "Whiskey", label: "Rye whiskey" },
-      { unit: "cl", amount: 2, ingredient: "Vermouth", label: "Red vermouth" },
+      { unit: "cl", amount: 5, name: "Whiskey", label: "Rye whiskey" },
+      { unit: "cl", amount: 2, name: "Vermouth", label: "Red vermouth" },
       { special: "1 dash Angostura Bitters" }
     ],
     garnish: "Cherry",
@@ -284,9 +284,9 @@ const drinks = [
     glass: "martini",
     category: "After Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 1.5, ingredient: "Cognac" },
-      { unit: "cl", amount: 4.5, ingredient: "Red Port" },
-      { unit: "cl", amount: 1, ingredient: "Egg yolk" }
+      { unit: "cl", amount: 1.5, name: "Cognac" },
+      { unit: "cl", amount: 4.5, name: "Red Port" },
+      { unit: "cl", amount: 1, name: "Egg yolk" }
     ],
     preparation:
       "Shake with ice cubes. Strain into cocktail glass. Sprinkle with fresh ground nutmeg."
@@ -296,10 +296,10 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "Gin" },
-      { unit: "cl", amount: 3, ingredient: "Lemon juice" },
-      { unit: "cl", amount: 1, ingredient: "Syrup", label: "Sugar syrup" },
-      { unit: "cl", amount: 8, ingredient: "Soda water" }
+      { unit: "cl", amount: 4.5, name: "Gin" },
+      { unit: "cl", amount: 3, name: "Lemon juice" },
+      { unit: "cl", amount: 1, name: "Syrup", label: "Sugar syrup" },
+      { unit: "cl", amount: 8, name: "Soda water" }
     ],
     garnish: "Lemon slice",
     preparation:
@@ -310,8 +310,8 @@ const drinks = [
     glass: "martini",
     category: "After Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 5, ingredient: "Vodka" },
-      { unit: "cl", amount: 1, ingredient: "Coffee liqueur", label: "Kahlúa" },
+      { unit: "cl", amount: 5, name: "Vodka" },
+      { unit: "cl", amount: 1, name: "Coffee liqueur", label: "Kahlúa" },
       {
         special: "Sugar syrup (according to individual preference of sweetness)"
       },
@@ -324,9 +324,9 @@ const drinks = [
     glass: "margarita",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 3.5, ingredient: "Tequila" },
-      { unit: "cl", amount: 2, ingredient: "Triple Sec", label: "Cointreau" },
-      { unit: "cl", amount: 1.5, ingredient: "Lime juice" }
+      { unit: "cl", amount: 3.5, name: "Tequila" },
+      { unit: "cl", amount: 2, name: "Triple Sec", label: "Cointreau" },
+      { unit: "cl", amount: 1.5, name: "Lime juice" }
     ],
     preparation:
       "Shake with ice cubes. Strain into cocktail glass rimmed with salt (note:Fruit Margarita - blend selected fruit with the above recipe)."
@@ -336,10 +336,10 @@ const drinks = [
     glass: "champagne-tulip",
     category: "Sparkling Cocktail",
     ingredients: [
-      { unit: "cl", amount: 3, ingredient: "Gin" },
-      { unit: "cl", amount: 1.5, ingredient: "Lemon juice" },
+      { unit: "cl", amount: 3, name: "Gin" },
+      { unit: "cl", amount: 1.5, name: "Lemon juice" },
       { special: "2 dashes Sugar syrup" },
-      { unit: "cl", amount: 6, ingredient: "Champagne" }
+      { unit: "cl", amount: 6, name: "Champagne" }
     ],
     preparation:
       "Shake with ice cubes, except for champagne. Strain into a champagne flute. Top up with champagne. Stir gently."
@@ -349,10 +349,10 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 3, ingredient: "White rum" },
-      { unit: "cl", amount: 1.5, ingredient: "Galliano" },
-      { unit: "cl", amount: 1.5, ingredient: "Triple Sec" },
-      { unit: "cl", amount: 1.5, ingredient: "Lime juice" }
+      { unit: "cl", amount: 3, name: "White rum" },
+      { unit: "cl", amount: 1.5, name: "Galliano" },
+      { unit: "cl", amount: 1.5, name: "Triple Sec" },
+      { unit: "cl", amount: 1.5, name: "Lime juice" }
     ],
     preparation: "Shake and strain into a chilled cocktail glass."
   },
@@ -361,9 +361,9 @@ const drinks = [
     glass: "hurricane",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 3, ingredient: "White rum" },
-      { unit: "cl", amount: 9, ingredient: "Pineapple juice" },
-      { unit: "cl", amount: 3, ingredient: "Coconut milk" }
+      { unit: "cl", amount: 3, name: "White rum" },
+      { unit: "cl", amount: 9, name: "Pineapple juice" },
+      { unit: "cl", amount: 3, name: "Coconut milk" }
     ],
     garnish: "Pineapple slice and a cherry",
     preparation:
@@ -374,14 +374,14 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "Gin" },
+      { unit: "cl", amount: 4.5, name: "Gin" },
       {
         unit: "cl",
         amount: 1.5,
-        ingredient: "Cherry liqueur",
+        name: "Cherry liqueur",
         label: "Maraschino"
       },
-      { unit: "cl", amount: 1.5, ingredient: "Lemon juice" }
+      { unit: "cl", amount: 1.5, name: "Lemon juice" }
     ],
     preparation: "Shake and strain into a chilled cocktail glass."
   },
@@ -390,8 +390,8 @@ const drinks = [
     glass: "champagne-flute",
     category: "Sparkling Cocktail",
     ingredients: [
-      { unit: "cl", amount: 10, ingredient: "Prosecco" },
-      { unit: "cl", amount: 5, ingredient: "Peach puree" }
+      { unit: "cl", amount: 10, name: "Prosecco" },
+      { unit: "cl", amount: 5, name: "Peach puree" }
     ],
     preparation:
       "Pour peach puree into chilled glass and add sparkling wine. Stir gently. Variations: Puccini (fresh mandarin juice), Rossini (fresh strawberry puree), Tintoretto (fresh pomegranate juice)"
@@ -404,16 +404,16 @@ const drinks = [
       {
         unit: "cl",
         amount: 3,
-        ingredient: "Créme liqueur",
+        name: "Créme liqueur",
         label: "White Créme de Cacao"
       },
       {
         unit: "cl",
         amount: 3,
-        ingredient: "Créme liqueur",
+        name: "Créme liqueur",
         label: "Green Créme de Menthe"
       },
-      { unit: "cl", amount: 3, ingredient: "Cream" }
+      { unit: "cl", amount: 3, name: "Cream" }
     ],
     preparation: "Shake with ice cubes. Strain into chilled cocktail glass."
   },
@@ -422,9 +422,9 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "Tequila" },
-      { unit: "cl", amount: 9, ingredient: "Orange juice" },
-      { unit: "cl", amount: 1.5, ingredient: "Syrup", label: "Grenadine" }
+      { unit: "cl", amount: 4.5, name: "Tequila" },
+      { unit: "cl", amount: 9, name: "Orange juice" },
+      { unit: "cl", amount: 1.5, name: "Syrup", label: "Grenadine" }
     ],
     garnish: "Orange slice and a cherry",
     preparation:
@@ -435,9 +435,9 @@ const drinks = [
     glass: "martini",
     category: "Before Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "White rum" },
-      { unit: "cl", amount: 2.5, ingredient: "Lime juice" },
-      { unit: "cl", amount: 1.5, ingredient: "Syrup", label: "Simple syrup" }
+      { unit: "cl", amount: 4.5, name: "White rum" },
+      { unit: "cl", amount: 2.5, name: "Lime juice" },
+      { unit: "cl", amount: 1.5, name: "Syrup", label: "Simple syrup" }
     ],
     preparation: "Shake and strain into a cocktail glass."
   },
@@ -449,10 +449,10 @@ const drinks = [
       {
         unit: "cl",
         amount: 4.5,
-        ingredient: "Whiskey",
+        name: "Whiskey",
         label: "Scotch whisky"
       },
-      { unit: "cl", amount: 2.5, ingredient: "Drambuie" }
+      { unit: "cl", amount: 2.5, name: "Drambuie" }
     ],
     garnish: "Lemon twist",
     preparation: "Build into old-fashioned glass filled with ice. Stir gently."
@@ -462,17 +462,17 @@ const drinks = [
     glass: "shot",
     category: "After Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 2, ingredient: "Coffee liqueur", label: "Kahlúa" },
+      { unit: "cl", amount: 2, name: "Coffee liqueur", label: "Kahlúa" },
       {
         unit: "cl",
         amount: 2,
-        ingredient: "Cream liqueur",
+        name: "Cream liqueur",
         label: "Baileys Irish Cream"
       },
       {
         unit: "cl",
         amount: 2,
-        ingredient: "Triple Sec",
+        name: "Triple Sec",
         label: "Grand Marnier"
       }
     ],
@@ -484,11 +484,11 @@ const drinks = [
     glass: "martini",
     category: "After Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 5, ingredient: "Cognac" },
+      { unit: "cl", amount: 5, name: "Cognac" },
       {
         unit: "cl",
         amount: 2,
-        ingredient: "Créme liqueur",
+        name: "Créme liqueur",
         label: "White Créme de Menthe"
       }
     ],
@@ -500,10 +500,10 @@ const drinks = [
     glass: "martini",
     category: "After Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 2, ingredient: "Galliano" },
-      { unit: "cl", amount: 2, ingredient: "Triple Sec" },
-      { unit: "cl", amount: 2, ingredient: "Orange juice" },
-      { unit: "cl", amount: 1, ingredient: "Cream" }
+      { unit: "cl", amount: 2, name: "Galliano" },
+      { unit: "cl", amount: 2, name: "Triple Sec" },
+      { unit: "cl", amount: 2, name: "Orange juice" },
+      { unit: "cl", amount: 1, name: "Cream" }
     ],
     preparation: "Shake with ice cubes. Strain into chilled cocktail glass."
   },
@@ -511,8 +511,8 @@ const drinks = [
     name: "God Mother",
     glass: "old-fashioned",
     ingredients: [
-      { unit: "cl", amount: 3.5, ingredient: "Vodka" },
-      { unit: "cl", amount: 3.5, ingredient: "DiSaronno" }
+      { unit: "cl", amount: 3.5, name: "Vodka" },
+      { unit: "cl", amount: 3.5, name: "DiSaronno" }
     ],
     preparation:
       "Build into old fashioned glass filled with ice cubes. Stir gently."
@@ -522,8 +522,8 @@ const drinks = [
     glass: "old-fashioned",
     category: "Sparkling Cocktail",
     ingredients: [
-      { unit: "cl", amount: 6, ingredient: "Prosecco" },
-      { unit: "cl", amount: 4, ingredient: "Aperol" },
+      { unit: "cl", amount: 6, name: "Prosecco" },
+      { unit: "cl", amount: 4, name: "Aperol" },
       { special: "Splash of Soda water" }
     ],
     garnish: "Half an orange slice",
@@ -535,10 +535,10 @@ const drinks = [
     glass: "old-fashioned",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 4, ingredient: "Gin" },
-      { unit: "cl", amount: 1.5, ingredient: "Lemon juice" },
-      { unit: "cl", amount: 1, ingredient: "Syrup", label: "Sugar syrup" },
-      { unit: "cl", amount: 1.5, ingredient: "Blackberry liqueur" }
+      { unit: "cl", amount: 4, name: "Gin" },
+      { unit: "cl", amount: 1.5, name: "Lemon juice" },
+      { unit: "cl", amount: 1, name: "Syrup", label: "Sugar syrup" },
+      { unit: "cl", amount: 1.5, name: "Blackberry liqueur" }
     ],
     garnish: "Lemon slice and two blackberries",
     preparation:
@@ -548,14 +548,14 @@ const drinks = [
     name: "Alexander",
     glass: "martini",
     ingredients: [
-      { unit: "cl", amount: 3, ingredient: "Cognac" },
+      { unit: "cl", amount: 3, name: "Cognac" },
       {
         unit: "cl",
         amount: 3,
-        ingredient: "Créme liqueur",
+        name: "Créme liqueur",
         label: "Brown Créme de Cacao"
       },
-      { unit: "cl", amount: 3, ingredient: "Cream" }
+      { unit: "cl", amount: 3, name: "Cream" }
     ],
     preparation:
       "Shake and strain into a chilled cocktail glass. Sprinkle with fresh ground nutmeg."
@@ -565,9 +565,9 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 2.5, ingredient: "Vodka", label: "Citron Vodka" },
-      { unit: "cl", amount: 2, ingredient: "Triple Sec" },
-      { unit: "cl", amount: 1.5, ingredient: "Lemon juice" }
+      { unit: "cl", amount: 2.5, name: "Vodka", label: "Citron Vodka" },
+      { unit: "cl", amount: 2, name: "Triple Sec" },
+      { unit: "cl", amount: 1.5, name: "Lemon juice" }
     ],
     garnish: "Lemon slice",
     preparation:
@@ -578,9 +578,9 @@ const drinks = [
     glass: "martini",
     category: "Before Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "Vodka" },
-      { unit: "cl", amount: 1.5, ingredient: "Raspberry liqueur" },
-      { unit: "cl", amount: 1.5, ingredient: "Pineapple juice" }
+      { unit: "cl", amount: 4.5, name: "Vodka" },
+      { unit: "cl", amount: 1.5, name: "Raspberry liqueur" },
+      { unit: "cl", amount: 1.5, name: "Pineapple juice" }
     ],
     preparation:
       "Stir in mixing glass with ice cubes. Strain into chilled cocktail glass. Squeeze oil from lemon peel onto the drink."
@@ -590,8 +590,8 @@ const drinks = [
     glass: "old-fashioned",
     category: "After Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 5, ingredient: "Vodka" },
-      { unit: "cl", amount: 2, ingredient: "Coffee liqueur" }
+      { unit: "cl", amount: 5, name: "Vodka" },
+      { unit: "cl", amount: 2, name: "Coffee liqueur" }
     ],
     preparation:
       "Build into old fashioned glass filled with ice cubes. Stir gently. Note: for White Russian, float fresh cream on the top and stir gently."
@@ -601,9 +601,9 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "Vodka" },
-      { unit: "cl", amount: 9, ingredient: "Tomato juice" },
-      { unit: "cl", amount: 1.5, ingredient: "Lemon juice" },
+      { unit: "cl", amount: 4.5, name: "Vodka" },
+      { unit: "cl", amount: 9, name: "Tomato juice" },
+      { unit: "cl", amount: 1.5, name: "Lemon juice" },
       { special: "2 to 3 dashes of Worcestershire Sauce" },
       { special: "Tabasco" },
       { special: "Celery salt" },
@@ -617,16 +617,16 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 4, ingredient: "White rum" },
-      { unit: "cl", amount: 2, ingredient: "Dark rum" },
+      { unit: "cl", amount: 4, name: "White rum" },
+      { unit: "cl", amount: 2, name: "Dark rum" },
       {
         unit: "cl",
         amount: 1.5,
         ingredient: "Triple Sec",
         label: "Orange Curaçao"
       },
-      { unit: "cl", amount: 1.5, ingredient: "Syrup", label: "Orgeat syrup" },
-      { unit: "cl", amount: 1, ingredient: "Lime juice" }
+      { unit: "cl", amount: 1.5, name: "Syrup", label: "Orgeat syrup" },
+      { unit: "cl", amount: 1, name: "Lime juice" }
     ],
     garnish: "Pineapple spear, mint leaves and lime wedge",
     preparation: "Shake and strain into highball glass. Serve with straw."
@@ -636,9 +636,9 @@ const drinks = [
     glass: "margarita",
     category: "Sparkling Cocktail",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "Dark rum", label: "Gold rum" },
-      { unit: "cl", amount: 1.5, ingredient: "Galliano" },
-      { unit: "cl", amount: 6, ingredient: "Pineapple juice" },
+      { unit: "cl", amount: 4.5, name: "Dark rum", label: "Gold rum" },
+      { unit: "cl", amount: 1.5, name: "Galliano" },
+      { unit: "cl", amount: 6, name: "Pineapple juice" },
       { special: "1 dash Lime juice" },
       { special: "Top with Prosecco" }
     ]
@@ -648,10 +648,10 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 4, ingredient: "Vodka" },
-      { unit: "cl", amount: 2, ingredient: "Peach schnapps" },
-      { unit: "cl", amount: 4, ingredient: "Cranberry juice" },
-      { unit: "cl", amount: 4, ingredient: "Orange juice" }
+      { unit: "cl", amount: 4, name: "Vodka" },
+      { unit: "cl", amount: 2, name: "Peach schnapps" },
+      { unit: "cl", amount: 4, name: "Cranberry juice" },
+      { unit: "cl", amount: 4, name: "Orange juice" }
     ],
     garnish: "Orange slice",
     preparation: "Build all ingredients in a highball glass filled with ice."
@@ -661,8 +661,8 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 5, ingredient: "Gin" },
-      { unit: "cl", amount: 3, ingredient: "Orange juice" },
+      { unit: "cl", amount: 5, name: "Gin" },
+      { unit: "cl", amount: 3, name: "Orange juice" },
       { special: "2 drops Absinthe" },
       { special: "2 drops Grenadine" }
     ],
@@ -673,7 +673,7 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 6, ingredient: "Gin" },
+      { unit: "cl", amount: 6, name: "Gin" },
       { special: "2 drops Peach Bitters" },
       { special: "2 Fresh mint leaves" }
     ],
@@ -686,9 +686,9 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 5, ingredient: "Cognac" },
-      { unit: "cl", amount: 2, ingredient: "Triple Sec" },
-      { unit: "cl", amount: 2, ingredient: "Lemon juice" }
+      { unit: "cl", amount: 5, name: "Cognac" },
+      { unit: "cl", amount: 2, name: "Triple Sec" },
+      { unit: "cl", amount: 2, name: "Lemon juice" }
     ],
     preparation: "Shake with ice cubes. Strain into cocktail glass."
   },
@@ -697,9 +697,9 @@ const drinks = [
     glass: "hot-drink",
     category: "Hot Drink",
     ingredients: [
-      { unit: "cl", amount: 4, ingredient: "Whiskey", label: "Irish whiskey" },
-      { unit: "cl", amount: 9, ingredient: "Hot coffee" },
-      { unit: "cl", amount: 3, ingredient: "Cream" },
+      { unit: "cl", amount: 4, name: "Whiskey", label: "Irish whiskey" },
+      { unit: "cl", amount: 9, name: "Hot coffee" },
+      { unit: "cl", amount: 3, name: "Cream" },
       { special: "1 teaspoon of brown sugar" }
     ],
     preparation:
@@ -710,8 +710,8 @@ const drinks = [
     glass: "old-fashioned",
     category: "After Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 5, ingredient: "Cognac" },
-      { unit: "cl", amount: 1, ingredient: "Absinthe" },
+      { unit: "cl", amount: 5, name: "Cognac" },
+      { unit: "cl", amount: 1, name: "Absinthe" },
       { special: "1 sugar cube" },
       { special: "2 dashes Peychaud’s bitters" }
     ],
@@ -724,8 +724,8 @@ const drinks = [
     glass: "old-fashioned",
     category: "Before Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 3, ingredient: "Campari" },
-      { unit: "cl", amount: 3, ingredient: "Vermouth", label: "Red vermouth" },
+      { unit: "cl", amount: 3, name: "Campari" },
+      { unit: "cl", amount: 3, name: "Vermouth", label: "Red vermouth" },
       { special: "A splash of soda water" }
     ],
     garnish: "Half an orange slice",
@@ -737,18 +737,18 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 3, ingredient: "Gin" },
-      { unit: "cl", amount: 1.5, ingredient: "Cherry liqueur" },
+      { unit: "cl", amount: 3, name: "Gin" },
+      { unit: "cl", amount: 1.5, name: "Cherry liqueur" },
       {
         unit: "cl",
         amount: 0.75,
         ingredient: "Triple Sec",
         label: "Cointreau"
       },
-      { unit: "cl", amount: 0.75, ingredient: "DOM Bénédictine" },
-      { unit: "cl", amount: 12.0, ingredient: "Pineapple juice" },
-      { unit: "cl", amount: 1.5, ingredient: "Lime juice" },
-      { unit: "cl", amount: 1, ingredient: "Syrup", label: "Grenadine" },
+      { unit: "cl", amount: 0.75, name: "DOM Bénédictine" },
+      { unit: "cl", amount: 12.0, name: "Pineapple juice" },
+      { unit: "cl", amount: 1.5, name: "Lime juice" },
+      { unit: "cl", amount: 1, name: "Syrup", label: "Grenadine" },
       { special: "1 dash Angostura bitters" }
     ],
     garnish: "Pineapple slice and a cherry",
@@ -758,8 +758,8 @@ const drinks = [
     name: "French Connection",
     glass: "old-fashioned",
     ingredients: [
-      { unit: "cl", amount: 3.5, ingredient: "Cognac" },
-      { unit: "cl", amount: 3.5, ingredient: "DiSaronno" }
+      { unit: "cl", amount: 3.5, name: "Cognac" },
+      { unit: "cl", amount: 3.5, name: "DiSaronno" }
     ],
     preparation:
       "Build into old fashioned glass filled with ice cubes. Stir gently."
@@ -769,9 +769,9 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "Vodka" },
-      { unit: "cl", amount: 12, ingredient: "Ginger beer" },
-      { unit: "cl", amount: 0.5, ingredient: "Lime juice" },
+      { unit: "cl", amount: 4.5, name: "Vodka" },
+      { unit: "cl", amount: 12, name: "Ginger beer" },
+      { unit: "cl", amount: 0.5, name: "Lime juice" },
       { special: "1 slice lime in a highball glass" }
     ],
     garnish: "Lime slice",
@@ -782,10 +782,10 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "Gin" },
-      { unit: "cl", amount: 3, ingredient: "Lemon juice" },
-      { unit: "cl", amount: 1.5, ingredient: "Syrup", label: "Sugar syrup" },
-      { unit: "cl", amount: 6, ingredient: "Soda water" }
+      { unit: "cl", amount: 4.5, name: "Gin" },
+      { unit: "cl", amount: 3, name: "Lemon juice" },
+      { unit: "cl", amount: 1.5, name: "Syrup", label: "Sugar syrup" },
+      { unit: "cl", amount: 6, name: "Soda water" }
     ],
     garnish: "Lemon slice and a cherry",
     preparation:
@@ -796,11 +796,11 @@ const drinks = [
     glass: "white-wine",
     category: "Before Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 9, ingredient: "Dry White Wine" },
+      { unit: "cl", amount: 9, name: "Dry White Wine" },
       {
         unit: "cl",
         amount: 1,
-        ingredient: "Créme liqueur",
+        name: "Créme liqueur",
         label: "Créme de Cassis"
       }
     ],
@@ -815,7 +815,7 @@ const drinks = [
       {
         unit: "cl",
         amount: 6,
-        ingredient: "Whiskey",
+        name: "Whiskey",
         label: "Bourbon whiskey"
       },
       { special: "4 fresh mint sprigs" },
@@ -831,8 +831,8 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "Tequila" },
-      { unit: "cl", amount: 1.5, ingredient: "Lime juice" },
+      { unit: "cl", amount: 4.5, name: "Tequila" },
+      { unit: "cl", amount: 1.5, name: "Lime juice" },
       { special: "2 bar spoons of Agave nectar" }
     ],
     preparation: "Shake and strain into a chilled cocktail glass."
@@ -842,9 +842,9 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 3.5, ingredient: "Gin" },
-      { unit: "cl", amount: 2, ingredient: "Apricot brandy" },
-      { unit: "cl", amount: 1.5, ingredient: "Orange juice" }
+      { unit: "cl", amount: 3.5, name: "Gin" },
+      { unit: "cl", amount: 2, name: "Apricot brandy" },
+      { unit: "cl", amount: 1.5, name: "Orange juice" }
     ],
     preparation: "Shake with ice cubes. Strain into chilled cocktail glass."
   },
@@ -853,9 +853,9 @@ const drinks = [
     glass: "martini",
     category: "Before Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 6, ingredient: "Vodka" },
-      { unit: "cl", amount: 1, ingredient: "Vermouth", label: "Dry vermouth" },
-      { unit: "cl", amount: 1, ingredient: "Olive juice" }
+      { unit: "cl", amount: 6, name: "Vodka" },
+      { unit: "cl", amount: 1, name: "Vermouth", label: "Dry vermouth" },
+      { unit: "cl", amount: 1, name: "Olive juice" }
     ],
     garnish: "Green olive",
     preparation:
@@ -866,8 +866,8 @@ const drinks = [
     glass: "champagne-flute",
     category: "Sparkling Cocktail",
     ingredients: [
-      { unit: "cl", amount: 9, ingredient: "Champagne" },
-      { unit: "cl", amount: 1, ingredient: "Cognac" },
+      { unit: "cl", amount: 9, name: "Champagne" },
+      { unit: "cl", amount: 1, name: "Cognac" },
       { special: "2 dashes Angostura Bitters" },
       { special: "1 sugar cube" }
     ],
@@ -880,15 +880,15 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 6, ingredient: "White rum" },
+      { unit: "cl", amount: 6, name: "White rum" },
       {
         unit: "cl",
         amount: 1,
-        ingredient: "Cherry liqueur",
+        name: "Cherry liqueur",
         label: "Maraschino"
       },
-      { unit: "cl", amount: 6, ingredient: "Pineapple juice" },
-      { unit: "cl", amount: 1, ingredient: "Syrup", label: "Grenadine" }
+      { unit: "cl", amount: 6, name: "Pineapple juice" },
+      { unit: "cl", amount: 1, name: "Syrup", label: "Grenadine" }
     ],
     preparation: "Shake and strain into a chilled large cocktail glass."
   },
@@ -897,15 +897,15 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 6, ingredient: "White rum" },
-      { unit: "cl", amount: 4, ingredient: "Grapefruit juice" },
+      { unit: "cl", amount: 6, name: "White rum" },
+      { unit: "cl", amount: 4, name: "Grapefruit juice" },
       {
         unit: "cl",
         amount: 1.5,
-        ingredient: "Cherry liqueur",
+        name: "Cherry liqueur",
         label: "Maraschino"
       },
-      { unit: "cl", amount: 1.5, ingredient: "Lime juice" }
+      { unit: "cl", amount: 1.5, name: "Lime juice" }
     ],
     preparation: "Shake with ice cubes. Strain into a double cocktail glass."
   },
@@ -914,8 +914,8 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 6, ingredient: "Dark rum" },
-      { unit: "cl", amount: 10, ingredient: "Ginger beer" }
+      { unit: "cl", amount: 6, name: "Dark rum" },
+      { unit: "cl", amount: 10, name: "Ginger beer" }
     ],
     garnish: "Lime wedge",
     preparation:
@@ -926,11 +926,11 @@ const drinks = [
     glass: "highball",
     category: "Longdrink",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "Gin" },
-      { unit: "cl", amount: 1.5, ingredient: "Lime juice" },
-      { unit: "cl", amount: 1.5, ingredient: "Lemon juice" },
-      { unit: "cl", amount: 3, ingredient: "Syrup", label: "Sugar syrup" },
-      { unit: "cl", amount: 6, ingredient: "Cream" },
+      { unit: "cl", amount: 4.5, name: "Gin" },
+      { unit: "cl", amount: 1.5, name: "Lime juice" },
+      { unit: "cl", amount: 1.5, name: "Lemon juice" },
+      { unit: "cl", amount: 3, name: "Syrup", label: "Sugar syrup" },
+      { unit: "cl", amount: 6, name: "Cream" },
       { special: "1 Egg white" },
       { special: "3 dashes Orange flower water" },
       { special: "2 drops Vanilla extract" },
@@ -944,15 +944,15 @@ const drinks = [
     glass: "highball",
     category: "Sparkling Cocktail",
     ingredients: [
-      { unit: "cl", amount: 2.5, ingredient: "Vodka" },
-      { unit: "cl", amount: 2.5, ingredient: "Lemon juice" },
+      { unit: "cl", amount: 2.5, name: "Vodka" },
+      { unit: "cl", amount: 2.5, name: "Lemon juice" },
       {
         unit: "cl",
         amount: 1.5,
-        ingredient: "Créme liqueur",
+        name: "Créme liqueur",
         label: "Créme de Cassis"
       },
-      { unit: "cl", amount: 1, ingredient: "Syrup", label: "Sugar syrup" }
+      { unit: "cl", amount: 1, name: "Syrup", label: "Sugar syrup" }
     ],
     garnish: "Lemon slice and a blackberry",
     preparation:
@@ -965,10 +965,10 @@ const drinks = [
       {
         unit: "cl",
         amount: 3.5,
-        ingredient: "Whiskey",
+        name: "Whiskey",
         label: "Scotch whisky"
       },
-      { unit: "cl", amount: 3.5, ingredient: "DiSaronno" }
+      { unit: "cl", amount: 3.5, name: "DiSaronno" }
     ],
     preparation:
       "Build into old fashioned glass filled with ice cubes. Stir gently."
@@ -978,10 +978,10 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 4, ingredient: "Vodka", label: "Citron Vodka" },
-      { unit: "cl", amount: 1.5, ingredient: "Triple Sec", label: "Cointreau" },
-      { unit: "cl", amount: 1.5, ingredient: "Lime juice" },
-      { unit: "cl", amount: 3, ingredient: "Cranberry juice" }
+      { unit: "cl", amount: 4, name: "Vodka", label: "Citron Vodka" },
+      { unit: "cl", amount: 1.5, name: "Triple Sec", label: "Cointreau" },
+      { unit: "cl", amount: 1.5, name: "Lime juice" },
+      { unit: "cl", amount: 3, name: "Cranberry juice" }
     ],
     garnish: "Lime slice",
     preparation: "Shake with ice cubes. Strain into a large cocktail glass."
@@ -991,8 +991,8 @@ const drinks = [
     glass: "martini",
     category: "Before Dinner Cocktail",
     ingredients: [
-      { unit: "cl", amount: 6, ingredient: "Gin" },
-      { unit: "cl", amount: 1, ingredient: "Vermouth", label: "Dry vermouth" }
+      { unit: "cl", amount: 6, name: "Gin" },
+      { unit: "cl", amount: 1, name: "Vermouth", label: "Dry vermouth" }
     ],
     preparation:
       "Stir in mixing glass with ice cubes. Strain into chilled martini glass. Squeeze oil from lemon peel onto the drink, or garnish with olive."
@@ -1002,10 +1002,10 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 3, ingredient: "White rum" },
-      { unit: "cl", amount: 3, ingredient: "Cognac" },
-      { unit: "cl", amount: 3, ingredient: "Triple Sec" },
-      { unit: "cl", amount: 2, ingredient: "Lemon juice" }
+      { unit: "cl", amount: 3, name: "White rum" },
+      { unit: "cl", amount: 3, name: "Cognac" },
+      { unit: "cl", amount: 3, name: "Triple Sec" },
+      { unit: "cl", amount: 2, name: "Lemon juice" }
     ],
     preparation: "Shake with ice cubes. Strain into chilled cocktail glass."
   },
@@ -1014,15 +1014,15 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 4, ingredient: "Gin", label: "Old Tom Gin" },
+      { unit: "cl", amount: 4, name: "Gin", label: "Old Tom Gin" },
       {
         unit: "cl",
         amount: 1,
-        ingredient: "Cherry liqueur",
+        name: "Cherry liqueur",
         label: "Maraschino"
       },
-      { unit: "cl", amount: 1, ingredient: "Orange Bitters" },
-      { unit: "cl", amount: 1, ingredient: "Lemon juice" }
+      { unit: "cl", amount: 1, name: "Orange Bitters" },
+      { unit: "cl", amount: 1, name: "Lemon juice" }
     ],
     garnish: "Lemon twist and a cherry",
     preparation: "Shake with ice cubes. Strain into chilled cocktail glass."
@@ -1032,7 +1032,7 @@ const drinks = [
     glass: "old-fashioned",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 5, ingredient: "Cachaca" },
+      { unit: "cl", amount: 5, name: "Cachaca" },
       { special: "half fresh lime cut into 4 wedges" },
       { special: "2 teaspoon sugar" }
     ],
@@ -1043,10 +1043,10 @@ const drinks = [
     name: "Vampiro",
     glass: "highball",
     ingredients: [
-      { unit: "cl", amount: 5, ingredient: "Tequila", label: "Silver Tequila" },
-      { unit: "cl", amount: 7, ingredient: "Tomato juice" },
-      { unit: "cl", amount: 3, ingredient: "Orange juice" },
-      { unit: "cl", amount: 1, ingredient: "Lime juice" },
+      { unit: "cl", amount: 5, name: "Tequila", label: "Silver Tequila" },
+      { unit: "cl", amount: 7, name: "Tomato juice" },
+      { unit: "cl", amount: 3, name: "Orange juice" },
+      { unit: "cl", amount: 1, name: "Lime juice" },
       { special: "1 teaspoon clear honey" },
       { special: "Half slice onion finely chopped" },
       { special: "Few slices fresh red hot chili peppers" },
@@ -1062,9 +1062,9 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 3, ingredient: "Vodka" },
-      { unit: "cl", amount: 3, ingredient: "Triple Sec" },
-      { unit: "cl", amount: 3, ingredient: "Lime juice" }
+      { unit: "cl", amount: 3, name: "Vodka" },
+      { unit: "cl", amount: 3, name: "Triple Sec" },
+      { unit: "cl", amount: 3, name: "Lime juice" }
     ],
     preparation: "Shake and strain into a chilled cocktail glass."
   },
@@ -1073,9 +1073,9 @@ const drinks = [
     glass: "martini",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 4, ingredient: "Gin" },
-      { unit: "cl", amount: 3, ingredient: "Triple Sec" },
-      { unit: "cl", amount: 2, ingredient: "Lemon juice" }
+      { unit: "cl", amount: 4, name: "Gin" },
+      { unit: "cl", amount: 3, name: "Triple Sec" },
+      { unit: "cl", amount: 2, name: "Lemon juice" }
     ],
     preparation: "Shake with ice cubes. Strain into large cocktail glass."
   },
@@ -1084,9 +1084,9 @@ const drinks = [
     glass: "highball",
     category: "All Day Cocktail",
     ingredients: [
-      { unit: "cl", amount: 4.5, ingredient: "Vodka" },
-      { unit: "cl", amount: 1.5, ingredient: "Galliano" },
-      { unit: "cl", amount: 9, ingredient: "Orange juice" }
+      { unit: "cl", amount: 4.5, name: "Vodka" },
+      { unit: "cl", amount: 1.5, name: "Galliano" },
+      { unit: "cl", amount: 9, name: "Orange juice" }
     ],
     garnish: "Orance slice and a cherry",
     preparation:
@@ -1097,20 +1097,18 @@ const drinks = [
 drinks.forEach(oneDrink => {
   oneDrink.alcohol = true;
   oneDrink.userID = null;
-  oneDrink.ingredients.forEach(oneIngredient => {
-    // oneIngredient.ingredientInfo = null;
-    Ingredient.findOne({ name: oneIngredient.ingredient })
-      .then(result => {
-        if (result) {
-          const { _id, name } = result;
-          oneDrink.ingredients.name = name;
-          oneDrink.ingredients.ingredientID = _id;
-        }
-      })
-      .catch(err => {
-        console.log("err :", err);
-      });
-  });
+  // oneDrink.ingredients.forEach((oneIngredient, i) => {
+  //   Ingredient.findOne({ name: oneIngredient.name })
+  //     .then(ingredient => {
+  //       if (ingredient) {
+  //         const { _id } = ingredient;
+  //         oneIngredient.ingredientID = _id;
+  //       }
+  //     })
+  //     .catch(err => {
+  //       console.log("err :", err);
+  //     });
+  // });
 });
 
 mongoose
