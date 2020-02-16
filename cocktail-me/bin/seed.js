@@ -54,7 +54,6 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 2, name: "Kirsch" },
       { unit: "cl", amount: 4, name: "Vermouth", label: "Dry vermouth" },
-      { special: "3 dashes Strawberry syrup" }
     ],
     preparation:
       "Stir all ingredients with ice and strain into a cocktail glass."
@@ -70,9 +69,6 @@ let drinks = [
         name: "Whiskey",
         label: "Bourbon or rye whiskey"
       },
-      { special: "2 dashes Angostura Bitters" },
-      { special: "1 sugar cube" },
-      { special: "Few dashes plain water" }
     ],
     garnish: "Orange slice and cherry",
     preparation:
@@ -85,9 +81,6 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 3, name: "Gin", label: "Old Tom Gin" },
       { unit: "cl", amount: 3, name: "Vermouth", label: "Dry vermouth" },
-      { special: "1/2 bar spoon Maraschino" },
-      { special: "1/4 bar spoon Absinthe" },
-      { special: "3 dashes Orange Bitters" }
     ],
     garnish: "Cherry and lemon twist",
     preparation: "Stir all ingredients with ice and strain into cocktail glass."
@@ -104,9 +97,6 @@ let drinks = [
         label: "White Cuban Rum"
       },
       { unit: "cl", amount: 3, name: "Lime juice" },
-      { special: "6 Mint sprigs" },
-      { special: "2 teaspoons white sugar" },
-      { special: "Soda water" }
     ],
     garnish: "Mint leaves and lemon slice",
     preparation:
@@ -119,7 +109,6 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 4, name: "Cognac" },
       { unit: "cl", amount: 12, name: "Ginger Ale" },
-      { special: "Dash of Angostura bitters (optional)" }
     ],
     garnish: "Lemon twist",
     preparation:
@@ -136,7 +125,6 @@ let drinks = [
       { unit: "cl", amount: 2, name: "Lemon juice" },
       { unit: "cl", amount: 1, name: "Syrup", label: "Grenadine" },
       { unit: "cl", amount: 1, name: "Syrup", label: "Sugar syrup" },
-      { special: "3 to 4 dashes Angostura bitters" }
     ],
     garnish: "Pineapple slice and a cherry",
     preparation:
@@ -162,7 +150,6 @@ let drinks = [
       { unit: "cl", amount: 4.5, name: "Pisco" },
       { unit: "cl", amount: 3, name: "Lemon juice" },
       { unit: "cl", amount: 2, name: "Syrup", label: "Sugar syrup" },
-      { special: "1 raw egg white (small egg)" }
     ],
     preparation:
       "Shake and strain into a chilled champagne flute. Dash some Angostura bitters on top."
@@ -179,7 +166,6 @@ let drinks = [
       { unit: "cl", amount: 1.5, name: "Gin" },
       { unit: "cl", amount: 2.5, name: "Lemon juice" },
       { unit: "cl", amount: 3.0, name: "Syrup", label: "Gomme syrup" },
-      { special: "1 dash of Cola" }
     ],
     garnish: "Lemon twist",
     preparation:
@@ -198,7 +184,6 @@ let drinks = [
         label: "Raspberry syrup"
       },
       { unit: "cl", amount: 1.5, name: "Lemon juice" },
-      { special: "Few drops of Egg White" }
     ],
     preparation: "Shake with ice cubes. Strain into cocktail glass."
   },
@@ -273,7 +258,6 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 5, name: "Whiskey", label: "Rye whiskey" },
       { unit: "cl", amount: 2, name: "Vermouth", label: "Red vermouth" },
-      { special: "1 dash Angostura Bitters" }
     ],
     garnish: "Cherry",
     preparation:
@@ -312,10 +296,6 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 5, name: "Vodka" },
       { unit: "cl", amount: 1, name: "Coffee liqueur", label: "Kahlúa" },
-      {
-        special: "Sugar syrup (according to individual preference of sweetness)"
-      },
-      { special: "1 short strong Espresso" }
     ],
     preparation: "Shake and strain into a chilled cocktail glass."
   },
@@ -338,7 +318,6 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 3, name: "Gin" },
       { unit: "cl", amount: 1.5, name: "Lemon juice" },
-      { special: "2 dashes Sugar syrup" },
       { unit: "cl", amount: 6, name: "Champagne" }
     ],
     preparation:
@@ -524,7 +503,6 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 6, name: "Prosecco" },
       { unit: "cl", amount: 4, name: "Aperol" },
-      { special: "Splash of Soda water" }
     ],
     garnish: "Half an orange slice",
     preparation:
@@ -604,10 +582,6 @@ let drinks = [
       { unit: "cl", amount: 4.5, name: "Vodka" },
       { unit: "cl", amount: 9, name: "Tomato juice" },
       { unit: "cl", amount: 1.5, name: "Lemon juice" },
-      { special: "2 to 3 dashes of Worcestershire Sauce" },
-      { special: "Tabasco" },
-      { special: "Celery salt" },
-      { special: "Pepper" }
     ],
     garnish: "Celery and optionally lemon wedge",
     preparation: "Stir gently, pour all ingredients into highball glass."
@@ -639,8 +613,6 @@ let drinks = [
       { unit: "cl", amount: 4.5, name: "Dark rum", label: "Gold rum" },
       { unit: "cl", amount: 1.5, name: "Galliano" },
       { unit: "cl", amount: 6, name: "Pineapple juice" },
-      { special: "1 dash Lime juice" },
-      { special: "Top with Prosecco" }
     ]
   },
   {
@@ -663,8 +635,6 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 5, name: "Gin" },
       { unit: "cl", amount: 3, name: "Orange juice" },
-      { special: "2 drops Absinthe" },
-      { special: "2 drops Grenadine" }
     ],
     preparation: "Shake and strain into a chilled cocktail glass."
   },
@@ -674,8 +644,6 @@ let drinks = [
     category: "All Day Cocktail",
     ingredients: [
       { unit: "cl", amount: 6, name: "Gin" },
-      { special: "2 drops Peach Bitters" },
-      { special: "2 Fresh mint leaves" }
     ],
     garnish: "Mint leaves",
     preparation:
@@ -700,7 +668,6 @@ let drinks = [
       { unit: "cl", amount: 4, name: "Whiskey", label: "Irish whiskey" },
       { unit: "cl", amount: 9, name: "Hot coffee" },
       { unit: "cl", amount: 3, name: "Cream" },
-      { special: "1 teaspoon of brown sugar" }
     ],
     preparation:
       "Warm the Irish whiskey over a burner. Pour into the glass (for hot drink) hot coffee, and add a teaspoon of sugar. Float Cream on top."
@@ -712,8 +679,6 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 5, name: "Cognac" },
       { unit: "cl", amount: 1, name: "Absinthe" },
-      { special: "1 sugar cube" },
-      { special: "2 dashes Peychaud’s bitters" }
     ],
     garnish: "Lemon twist",
     preparation:
@@ -726,7 +691,6 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 3, name: "Campari" },
       { unit: "cl", amount: 3, name: "Vermouth", label: "Red vermouth" },
-      { special: "A splash of soda water" }
     ],
     garnish: "Half an orange slice",
     preparation:
@@ -749,7 +713,6 @@ let drinks = [
       { unit: "cl", amount: 12.0, name: "Pineapple juice" },
       { unit: "cl", amount: 1.5, name: "Lime juice" },
       { unit: "cl", amount: 1, name: "Syrup", label: "Grenadine" },
-      { special: "1 dash Angostura bitters" }
     ],
     garnish: "Pineapple slice and a cherry",
     preparation: "Shake with ice cubes. Strain into highball glass."
@@ -772,7 +735,6 @@ let drinks = [
       { unit: "cl", amount: 4.5, name: "Vodka" },
       { unit: "cl", amount: 12, name: "Ginger beer" },
       { unit: "cl", amount: 0.5, name: "Lime juice" },
-      { special: "1 slice lime in a highball glass" }
     ],
     garnish: "Lime slice",
     preparation: "Combine the vodka and ginger beer. Add lime juice."
@@ -818,9 +780,6 @@ let drinks = [
         name: "Whiskey",
         label: "Bourbon whiskey"
       },
-      { special: "4 fresh mint sprigs" },
-      { special: "1 teaspoon powdered sugar" },
-      { special: "2 teaspoons water" }
     ],
     garnish: "Mint sprig",
     preparation:
@@ -833,7 +792,6 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 4.5, name: "Tequila" },
       { unit: "cl", amount: 1.5, name: "Lime juice" },
-      { special: "2 bar spoons of Agave nectar" }
     ],
     preparation: "Shake and strain into a chilled cocktail glass."
   },
@@ -868,8 +826,6 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 9, name: "Champagne" },
       { unit: "cl", amount: 1, name: "Cognac" },
-      { special: "2 dashes Angostura Bitters" },
-      { special: "1 sugar cube" }
     ],
     garnish: "Orange slice and a cherry",
     preparation:
@@ -931,10 +887,6 @@ let drinks = [
       { unit: "cl", amount: 1.5, name: "Lemon juice" },
       { unit: "cl", amount: 3, name: "Syrup", label: "Sugar syrup" },
       { unit: "cl", amount: 6, name: "Cream" },
-      { special: "1 Egg white" },
-      { special: "3 dashes Orange flower water" },
-      { special: "2 drops Vanilla extract" },
-      { special: "Soda water" }
     ],
     preparation:
       "Pour all ingredients (except soda) in a mixing glass, dry shake (no ice) for two minutes, add ice and hard shake for another minute. Strain into a highball glass without ice, top with soda."
@@ -1033,8 +985,6 @@ let drinks = [
     category: "All Day Cocktail",
     ingredients: [
       { unit: "cl", amount: 5, name: "Cachaca" },
-      { special: "half fresh lime cut into 4 wedges" },
-      { special: "2 teaspoon sugar" }
     ],
     preparation:
       "Place lime and sugar in old fashion glass and muddle. Fill glass with ice and Cachaca (note:Caipiroska- use Vodka instead of Cachaca)."
@@ -1047,11 +997,6 @@ let drinks = [
       { unit: "cl", amount: 7, name: "Tomato juice" },
       { unit: "cl", amount: 3, name: "Orange juice" },
       { unit: "cl", amount: 1, name: "Lime juice" },
-      { special: "1 teaspoon clear honey" },
-      { special: "Half slice onion finely chopped" },
-      { special: "Few slices fresh red hot chili peppers" },
-      { special: "Few drops Worcestershire sauce" },
-      { special: "Salt" }
     ],
     garnish: "Lime wedge and a green or red chili",
     preparation:
