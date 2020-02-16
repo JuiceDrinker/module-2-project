@@ -81,10 +81,18 @@ sessionRouter.get("/drink/:id", (req, res, next) => {
     .catch( (err) => console.log(err));
 });
 
-sessionRouter.get("/drinks", (req, res, next) => {
+sessionRouter.get("/search-drinks", (req, res, next) => {
   Ingredient.find({})
     .then( (ingredients) => {
       res.render("find-drinks", {ingredients});
+    })
+    .catch( (err) => console.log(err))
+});
+
+sessionRouter.get("/drinks", (req, res, next) => {
+  Drink.find({})
+    .then( (drinks) => {
+      res.render("all-drinks", {drinks});
     })
     .catch( (err) => console.log(err))
 });
