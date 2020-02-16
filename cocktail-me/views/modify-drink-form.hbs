@@ -1,6 +1,8 @@
 <h1>MODIFY THIS DRINK</h1>
 <form action="/modify-drink" method="post">
   <input type="text" name="name" value="{{drink.name}}">
+  <h3>Glass:</h3>
+  <input type="text" name="glass" value="{{drink.glass}}">
   <h3>Category:</h3>
   <input type="text" name="category" value="{{drink.category}}">
   <h3>Ingredients:</h3>
@@ -15,6 +17,8 @@
     <h3>Garnish:</h3>
     <input type="text" name="garnish" value="{{drink.garnish}}">
   {{/if}}
+  <br>
+  <label><input type="checkbox" name="alcohol" checked="true" value="">Alcohol</label>
   <br>
   <button>ACCEPT</button>
 </form>

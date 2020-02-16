@@ -68,6 +68,40 @@ sessionRouter.post("/add-drink", (req, res, next) => {
 });
 
 //Router to modify one drink
+sessionRouter.post("/modify-drink", (req, res, next) => {
+  const {
+    name,
+    glass,
+    category,
+    ingredient,
+    amount,
+    unit,
+    garnish,
+    preparation
+  } = req.body;
+  alcohol = req.body.alcohol === "on" ? true : false;
+
+
+  Drink.create({
+    name,
+    glass,
+    category,
+    ingredient,
+    amount,
+    unit,
+    garnish,
+    preparation,
+    alcohol,
+    private: true,
+    userId: req.session.currentUser,
+  })
+    .then( () => {
+      res.redirect("/drinks");
+    })
+    .catch( (err) => console.log(err));
+});
+
+//Router to modify one drink
 sessionRouter.get("/modify-drink/:drinkId", (req, res, next) => {
   Drink.findById(req.params.drinkId)
     .then( (drink) => {
