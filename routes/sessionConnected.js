@@ -5,7 +5,7 @@ const Drink = require("./../models/Drink");
 const Ingredient = require("./../models/Ingredient");
 const User = require("./../models/User");
 
-sessionRouter.use((req, res, next) => {
+sessionRouter.use((req, res, next) => {  //Everything below this are protected routes
   if (req.session.currentUser) {
     next();
   } else {
@@ -154,7 +154,7 @@ sessionRouter.get("/drink/:drinkId", (req, res, next) => {
 });
 
 //GET favourite of current user
-sessionRouter.get("/favourites", (req, res, next) => {
+sessionRouter.get("/favourites", (req, res, next) => { ///BACKLOG
   // Find the user
   User.findById(req.session.currentUser)
     .then(user => {
@@ -194,9 +194,8 @@ sessionRouter.post("/search-drinks", (req, res, next) => {
   }
 
   Drink.find(searchQuery)
-    .then(result => {
-      console.log(result);
-      res.send();
+    .then(searchQuery => {
+      res.render('search-result',{searchQuery});
     })
     .catch(err => {
       consle.log(err);
