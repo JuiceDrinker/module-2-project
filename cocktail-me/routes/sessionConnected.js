@@ -15,7 +15,7 @@ sessionRouter.use((req, res, next) => {
 
 //Router to POST a drink
 sessionRouter.post("/add-drink", (req, res, next) => {
-  const {
+  let {
     name,
     glass,
     category,
@@ -33,6 +33,18 @@ sessionRouter.post("/add-drink", (req, res, next) => {
     });
     return;
   }
+
+  ingredient = ingredient.charAt(0).toUpperCase().slice(1);
+  Ingredient.find({name: ingredient})
+    .then( (ingredientList) => {
+      if(ingredientList.length === 0) {
+        Ingredient.create({name: ingredient})
+          .then( () => console.log("Ingredient created."))
+          .catch( (err) => console.log(err));
+      }
+    })
+    .catch( (err) => console.log(err));
+
   const ingredients = [{name: ingredient, unit, amount}]
 
   Drink.findOne({name})
@@ -74,21 +86,25 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
     name,
     glass,
     category,
+    garnish,
+    preparation,
     ingredient,
     amount,
     unit,
-    garnish,
-    preparation
   } = req.body;
+
+  let ingredients = [];
+  ingredient.forEach((item, i) => {
+    ingredients.push({name: item, amount: amount[i], unit: unit[i]});
+  });
+
   alcohol = req.body.alcohol === "on" ? true : false;
 
   Drink.findOneAndUpdate({userId: req.session.currentUser}, {
     name,
     glass,
     category,
-    ingredient,
-    amount,
-    unit,
+    ingredients,
     garnish,
     preparation,
     alcohol
