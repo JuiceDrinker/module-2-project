@@ -54,7 +54,7 @@ sessionRouter.post("/add-drink", (req, res, next) => {
         userId: req.session.currentUser._id,
       })
         .then((drink) => {
-          User.findOneAndUpdate({_id: user._id}, {$push: {privateDrinks: {drinkId: drink._id}}})
+          User.findOneAndUpdate({_id: User._id}, {$push: {privateDrinks: {drinkId: drink._id}}})
             .then( () => {
               res.redirect(`/drink/${drink._id}`);
             })
