@@ -45,11 +45,11 @@ sessionRouter.post("/add-drink", (req, res, next) => {
     return;
   }
 
-  ingredient = ingredient.charAt(0).toUpperCase().slice(1);
-  Ingredient.find({name: ingredient})
+  let newIngredient = ingredient.charAt(0).toUpperCase() + ingredient.slice(1);
+  Ingredient.find({name: newIngredient})
     .then( (ingredientList) => {
       if(ingredientList.length === 0) {
-        Ingredient.create({name: ingredient})
+        Ingredient.create({name: newIngredient})
           .then( () => console.log("Ingredient created."))
           .catch( (err) => console.log(err));
       }
@@ -64,7 +64,7 @@ sessionRouter.post("/add-drink", (req, res, next) => {
         });
         return;
       }
-
+      const ingredients = [{name: newIngredient, amount, unit}]
       Drink.create({
         name,
         glass,
