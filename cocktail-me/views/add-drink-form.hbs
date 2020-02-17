@@ -20,8 +20,19 @@
   <br>
   <button>ADD</button>
 </form>
-  <a href="/"><button>Home</button></a>
+
+<form action='/endPointName' method='GET' id='ing-forms'>
+
+  <label for=''>name</label>
+  <input type='text' name='ingredient'>
+
+  <button type='submit' id="add-ingredient-input">Add</button>
+</form>
+
+<a href="/"><button>Home</button></a>
 
 {{#if messageError}}
 <p>{{messageError}}</p>
 {{/if}}
+
+<script src="/javascripts/add-drink.js"></script>

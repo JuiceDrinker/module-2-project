@@ -23,23 +23,23 @@ Dont know what to drink tonight? We'll tell you!
 
 ## API Routes (Back-end):
 
-| **Method** | **Route**                     | **Description**                                                          | Request - Body                  |
-| ---------- | ----------------------------- | ------------------------------------------------------------------------ | ------------------------------- |
-| `GET`      | `/`                           | Main page route. Renders home `index` view.                              |                                 |
-| `GET`      | `login`                       | Renders `login` form view.                                               |                                 |
-| `POST`     | `/login`                      | Sends Login form data to the server.                                     | { email, password }             |
-| `GET`      | `/signup`                     | Renders `signup` form view, if already logged in redirect to '/'         |                                 |
-| `POST`     | `/signup`                     | Sends Sign Up info to the server and creates user in the DB.             | { username, email, password}    |
-| `GET`      | `/my-profile`                 | Private route. Renders `my-profile` form view.                           |                                 |
-| `GET`      | `/favorites`                  | Private route. Render the `favorites` view.                              |                                 |
-| `POST`     | `/favorites`                  | Private route. Adds a new favorite for the current user.                 | { drinkID }                     |
-| `DELETE`   | `/favorites/:drinkID`         | Private route. Deletes the existing favorite from the current user.      |                                 |
-| `GET`      | `/random-drink`               | Renders `random-drink` view.                                             |                                 |
-| `GET`      | `/add-drink`                  | Renders `add-drink-form` view                                            |                                 |
-| `POST`     | `/add-drink`                  | Adds a drink to the user/global database depending on user wishes        |                                 |
-| `GET`      | `/drink/:id`                  | Renders `drink` view.                                                    |                                 |
-| `GET`      | `/drinks`                     | Renders `drinks` view.                                                   |                                 |
-| `GET`      | `/logout`                     | The user logs out from the page. Renders `login` view.                   |                                 |
+| **Method** | **Route**             | **Description**                                                     | Request - Body               |
+| ---------- | --------------------- | ------------------------------------------------------------------- | ---------------------------- |
+| `GET`      | `/`                   | Main page route. Renders home `index` view.                         |                              |
+| `GET`      | `login`               | Renders `login` form view.                                          |                              |
+| `POST`     | `/login`              | Sends Login form data to the server.                                | { email, password }          |
+| `GET`      | `/signup`             | Renders `signup` form view, if already logged in redirect to '/'    |                              |
+| `POST`     | `/signup`             | Sends Sign Up info to the server and creates user in the DB.        | { username, email, password} |
+| `GET`      | `/my-profile`         | Private route. Renders `my-profile` form view.                      |                              |
+| `GET`      | `/favorites`          | Private route. Render the `favorites` view.                         |                              |
+| `POST`     | `/favorites`          | Private route. Adds a new favorite for the current user.            | { drinkID }                  |
+| `DELETE`   | `/favorites/:drinkID` | Private route. Deletes the existing favorite from the current user. |                              |
+| `GET`      | `/random-drink`       | Renders `random-drink` view.                                        |                              |
+| `GET`      | `/add-drink`          | Renders `add-drink-form` view                                       |                              |
+| `POST`     | `/add-drink`          | Adds a drink to the user/global database depending on user wishes   |                              |
+| `GET`      | `/drink/:id`          | Renders `drink` view.                                               |                              |
+| `GET`      | `/drinks`             | Renders `drinks` view.                                              |                              |
+| `GET`      | `/logout`             | The user logs out from the page. Renders `login` view.              |                              |
 
 ## Models
 
@@ -105,4 +105,4 @@ The url to your repository and to your deployed project
 
 The url to your presentation slides
 
-[Slides Link]()
+[Slides Link](https://docs.google.com/presentation/d/1oAIR7o32Zo3rC2n8h_ifD_kuztF02mGVShe4454NMqA/edit?ts=5e4a9fb5#slide=id.g6f156a6528_0_53)
