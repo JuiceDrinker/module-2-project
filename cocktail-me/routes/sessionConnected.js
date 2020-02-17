@@ -97,9 +97,13 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
   } = req.body;
 
   let ingredients = [];
-  ingredient.forEach((item, i) => {
-    ingredients.push({ name: item, amount: amount[i], unit: unit[i] });
-  });
+  if (Array.isArray(ingredient)) {
+    ingredient.forEach((item, i) => {
+      ingredients.push({ name: item, amount: amount[i], unit: unit[i] });
+    });
+  } else {
+    ingredients.push({ name: ingredient, amount, unit });
+  }
 
   alcohol = req.body.alcohol === "on" ? true : false;
 
