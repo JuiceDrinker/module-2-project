@@ -80,7 +80,8 @@ sessionRouter.post("/add-drink", (req, res, next) => {
 });
 
 //Router to modify one drink
-sessionRouter.post("/modify-drink", (req, res, next) => {
+sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
+  const drinkId = req.params.drinkId;
   const {
     name,
     glass,
@@ -93,8 +94,7 @@ sessionRouter.post("/modify-drink", (req, res, next) => {
   } = req.body;
   alcohol = req.body.alcohol === "on" ? true : false;
 
-
-  Drink.create({
+  Drink.findOneAndUpdate({userId: req.session.currentUser}, {
     name,
     glass,
     category,
@@ -103,10 +103,8 @@ sessionRouter.post("/modify-drink", (req, res, next) => {
     unit,
     garnish,
     preparation,
-    alcohol,
-    private: true,
-    userId: req.session.currentUser,
-  })
+    alcohol
+    }, {new: true})
     .then( () => {
       res.redirect("/drinks");
     })
