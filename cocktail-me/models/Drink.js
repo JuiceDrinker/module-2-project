@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const drinkModel = new Schema({
-  name: { type: String, unique: true, required: true },
+  name: { type: String, unique: true, required: true, lowercase: true },
   glass: { type: String },
   category: { type: String },
   ingredients: [
@@ -17,7 +17,7 @@ const drinkModel = new Schema({
       }
     }
   ],
-  ingredientNameArray: [],
+  ingredientNameArray: [{ type: String, lowercase: true }],
   alcohol: { type: Boolean },
   garnish: { type: String },
   preparation: { type: String },

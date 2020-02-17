@@ -35,15 +35,15 @@ sessionRouter.post("/add-drink", (req, res, next) => {
   }
 
   let newIngredient = ingredient.charAt(0).toUpperCase() + ingredient.slice(1);
-  Ingredient.find({name: newIngredient})
-    .then( (ingredientList) => {
-      if(ingredientList.length === 0) {
-        Ingredient.create({name: newIngredient})
-          .then( () => console.log("Ingredient created."))
-          .catch( (err) => console.log(err));
+  Ingredient.find({ name: newIngredient })
+    .then(ingredientList => {
+      if (ingredientList.length === 0) {
+        Ingredient.create({ name: newIngredient })
+          .then(() => console.log("Ingredient created."))
+          .catch(err => console.log(err));
       }
     })
-    .catch( (err) => console.log(err));
+    .catch(err => console.log(err));
 
   Drink.findOne({ name })
     .then(drink => {
@@ -53,7 +53,7 @@ sessionRouter.post("/add-drink", (req, res, next) => {
         });
         return;
       }
-      const ingredients = [{name: newIngredient, amount, unit}]
+      const ingredients = [{ name: newIngredient, amount, unit }];
       Drink.create({
         name,
         glass,
@@ -93,12 +93,12 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
     preparation,
     ingredient,
     amount,
-    unit,
+    unit
   } = req.body;
 
   let ingredients = [];
   ingredient.forEach((item, i) => {
-    ingredients.push({name: item, amount: amount[i], unit: unit[i]});
+    ingredients.push({ name: item, amount: amount[i], unit: unit[i] });
   });
 
   alcohol = req.body.alcohol === "on" ? true : false;
@@ -173,6 +173,32 @@ sessionRouter.get("/search-drinks", (req, res, next) => {
       res.render("find-drinks", { ingredients });
     })
     .catch(err => console.log(err));
+});
+
+sessionRouter.post("/search-drinks", (req, res, next) => {
+  const { name, ingredients } = req.body;
+  nameArr = name ? name.split(" ") : [];
+  console.log("nameArr :", nameArr);
+  ingArr = ingredients ? ingredients.split(" ") : [];
+
+  const searchQuery = {};
+
+  if (nameArr.length > 0) {
+    searchQuery.name = { $in: nameArr };
+    // ingredientNameArray: { $in: ingArr },
+  }
+  if (ingArr.length > 0) {
+    searchQuery.ingredientNameArray = { $in: ingArr };
+  }
+
+  Drink.find(searchQuery)
+    .then(result => {
+      console.log(result);
+      res.send();
+    })
+    .catch(err => {
+      consle.log(err);
+    });
 });
 
 sessionRouter.get("/drinks", (req, res, next) => {
