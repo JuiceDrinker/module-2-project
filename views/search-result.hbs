@@ -1,3 +1,8 @@
-{{#each searchQuery}}
-<h1>{{this.name}}</h1>
-{{/each}}
+<h1>SELECTC ONE:</h1>
+<ul>
+  {{#each searchQuery}}
+    <li><a href="/drink/{{this._id}}">{{this.name}}</a></li>
+  {{/each}}
+</ul>
+<br>
+<a href="/search-drinks"><button>GO BACK</button></a>
