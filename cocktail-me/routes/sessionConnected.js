@@ -109,9 +109,7 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
       name,
       glass,
       category,
-      ingredient,
-      amount,
-      unit,
+      ingredients,
       garnish,
       preparation,
       alcohol
