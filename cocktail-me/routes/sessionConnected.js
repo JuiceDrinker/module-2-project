@@ -5,13 +5,25 @@ const Drink = require("./../models/Drink");
 const Ingredient = require("./../models/Ingredient");
 const User = require("./../models/User");
 
-sessionRouter.use((req, res, next) => {
+sessionRouter.use((req, res, next) => { 
   if (req.session.currentUser) {
     next();
   } else {
     res.redirect("/login");
   }
 });
+
+//GET favourite of current user
+sessionRouter.get('favourite/:userID'(req,res,next) => {
+  // Find the user
+  User.findById(userID)
+  .then((user) => {
+
+    res.render('favourites', {user.favourites})
+  }).catch((err) => {
+    
+  });
+})
 
 //Router to POST a drink
 sessionRouter.post("/add-drink", (req, res, next) => {
