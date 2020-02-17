@@ -1,3 +1,4 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const Drink = require("../models/Drink");
 const Ingredient = require("../models/Ingredient");
@@ -1061,7 +1062,7 @@ ingArr.forEach(oneIngredient => {
 });
 
 mongoose
-  .connect(`mongodb://localhost/${dbName}`, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })

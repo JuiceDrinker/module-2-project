@@ -1,3 +1,4 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const User = require("./../models/User");
 const dbName = "cocktail-me";
@@ -506,7 +507,7 @@ const users = [
 ];
 
 mongoose
-  .connect(`mongodb://localhost/${dbName}`, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
