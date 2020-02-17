@@ -26,20 +26,20 @@ Dont know what to drink tonight? We'll tell you!
 | **Method** | **Route**                     | **Description**                                                          | Request - Body                  |
 | ---------- | ----------------------------- | ------------------------------------------------------------------------ | ------------------------------- |
 | `GET`      | `/`                           | Main page route. Renders home `index` view.                              |                                 |
-| `GET`      | `/auth/login`                 | Renders `login` form view.                                               |                                 |
-| `POST`     | `/auth/login`                 | Sends Login form data to the server.                                     | { email, password }             |
-| `GET`      | `/auth/signup`                | Renders `signup` form view, if already logged in redirect to '/'         |                                 |
-| `POST`     | `/signup`                     | Sends Sign Up info to the server and creates user in the DB.             | { email, password }             |
-| `GET`      | `/private/profile`            | Private route. Renders `edit-profile` form view.                         |                                 |
-| `PUT`      | `/private/profile`            | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [imageUrl] } |
-| `GET`      | `/private/favorites`          | Private route. Render the `favorites` view.                              |                                 |
-| `POST`     | `/private/favorites/`         | Private route. Adds a new favorite for the current user.                 | { userID, drinkID }             |
-| `DELETE`   | `/private/favorites/:drinkID` | Private route. Deletes the existing favorite from the current user.      |                                 |
+| `GET`      | `login`                       | Renders `login` form view.                                               |                                 |
+| `POST`     | `/login`                      | Sends Login form data to the server.                                     | { email, password }             |
+| `GET`      | `/signup`                     | Renders `signup` form view, if already logged in redirect to '/'         |                                 |
+| `POST`     | `/signup`                     | Sends Sign Up info to the server and creates user in the DB.             | { username, email, password}    |
+| `GET`      | `/my-profile`                 | Private route. Renders `my-profile` form view.                           |                                 |
+| `GET`      | `/favorites`                  | Private route. Render the `favorites` view.                              |                                 |
+| `POST`     | `/favorites`                  | Private route. Adds a new favorite for the current user.                 | { drinkID }                     |
+| `DELETE`   | `/favorites/:drinkID`         | Private route. Deletes the existing favorite from the current user.      |                                 |
 | `GET`      | `/random-drink`               | Renders `random-drink` view.                                             |                                 |
-| `GET`      | `/add-drink`                  | Renders `add-drink` view                                                 |                                 |
+| `GET`      | `/add-drink`                  | Renders `add-drink-form` view                                            |                                 |
 | `POST`     | `/add-drink`                  | Adds a drink to the user/global database depending on user wishes        |                                 |
-| `GET`      | `/drink/:id`                  | Renders `random-drink` view.                                             |                                 |
-| `PUT`      | `/drink/:id`                  | Renders `random-drink` view.                                             |                                 |
+| `GET`      | `/drink/:id`                  | Renders `drink` view.                                                    |                                 |
+| `GET`      | `/drinks`                     | Renders `drinks` view.                                                   |                                 |
+| `GET`      | `/logout`                     | The user logs out from the page. Renders `login` view.                   |                                 |
 
 ## Models
 
@@ -52,8 +52,8 @@ User model
   password: String,
   favorites: [drinkId],
   notes: [ {drinkId, String} ],
-  terms: true/false,
-  newsletter: true/false,
+  terms: Boolean,
+  newsletter: Boolean,
 }
 
 ```
@@ -64,7 +64,7 @@ Drink model
 {
   name: String,
   ingridients: [ {ingridientId, unit, amount, label} ,{special} ],
-  alcohol: true/false,
+  alcohol: Boolean,
   category: String,
   garnish: String,
   preparation: String,

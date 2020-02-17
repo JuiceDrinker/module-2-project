@@ -3,9 +3,12 @@
   <br>
   <input type="password" name="password" placeholder="Password">
   <br>
-  <a href="#">SIGN UP!</a>
+  <a href="/signup">SIGN UP!</a>
   <a href="#">Forgot password</a>
   <br>
   <button>LOGIN</button>
-
 </form>
+
+{{#if messageError}}
+<p>{{messageError}}</p>
+{{/if}}

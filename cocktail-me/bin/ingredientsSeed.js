@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
-const Drink = require("./../models/Drink");
-const Ingredient = require("./../models/Ingredient");
+const Drink = require("../models/Drink");
+const Ingredient = require("../models/Ingredient");
 const dbName = "cocktail-me";
+
 let drinks = [
   {
     name: "Vesper",
@@ -53,7 +54,7 @@ let drinks = [
     glass: "martini",
     ingredients: [
       { unit: "cl", amount: 2, name: "Kirsch" },
-      { unit: "cl", amount: 4, name: "Vermouth", label: "Dry vermouth" }
+      { unit: "cl", amount: 4, name: "Vermouth", label: "Dry vermouth" },
     ],
     preparation:
       "Stir all ingredients with ice and strain into a cocktail glass."
@@ -68,7 +69,7 @@ let drinks = [
         amount: 4.5,
         name: "Whiskey",
         label: "Bourbon or rye whiskey"
-      }
+      },
     ],
     garnish: "Orange slice and cherry",
     preparation:
@@ -80,7 +81,7 @@ let drinks = [
     category: "All Day Cocktail",
     ingredients: [
       { unit: "cl", amount: 3, name: "Gin", label: "Old Tom Gin" },
-      { unit: "cl", amount: 3, name: "Vermouth", label: "Dry vermouth" }
+      { unit: "cl", amount: 3, name: "Vermouth", label: "Dry vermouth" },
     ],
     garnish: "Cherry and lemon twist",
     preparation: "Stir all ingredients with ice and strain into cocktail glass."
@@ -96,7 +97,7 @@ let drinks = [
         name: "White rum",
         label: "White Cuban Rum"
       },
-      { unit: "cl", amount: 3, name: "Lime juice" }
+      { unit: "cl", amount: 3, name: "Lime juice" },
     ],
     garnish: "Mint leaves and lemon slice",
     preparation:
@@ -108,7 +109,7 @@ let drinks = [
     category: "Longdrink",
     ingredients: [
       { unit: "cl", amount: 4, name: "Cognac" },
-      { unit: "cl", amount: 12, name: "Ginger Ale" }
+      { unit: "cl", amount: 12, name: "Ginger Ale" },
     ],
     garnish: "Lemon twist",
     preparation:
@@ -124,7 +125,7 @@ let drinks = [
       { unit: "cl", amount: 3.5, name: "Pineapple juice" },
       { unit: "cl", amount: 2, name: "Lemon juice" },
       { unit: "cl", amount: 1, name: "Syrup", label: "Grenadine" },
-      { unit: "cl", amount: 1, name: "Syrup", label: "Sugar syrup" }
+      { unit: "cl", amount: 1, name: "Syrup", label: "Sugar syrup" },
     ],
     garnish: "Pineapple slice and a cherry",
     preparation:
@@ -149,7 +150,7 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 4.5, name: "Pisco" },
       { unit: "cl", amount: 3, name: "Lemon juice" },
-      { unit: "cl", amount: 2, name: "Syrup", label: "Sugar syrup" }
+      { unit: "cl", amount: 2, name: "Syrup", label: "Sugar syrup" },
     ],
     preparation:
       "Shake and strain into a chilled champagne flute. Dash some Angostura bitters on top."
@@ -165,7 +166,7 @@ let drinks = [
       { unit: "cl", amount: 1.5, name: "Triple Sec" },
       { unit: "cl", amount: 1.5, name: "Gin" },
       { unit: "cl", amount: 2.5, name: "Lemon juice" },
-      { unit: "cl", amount: 3.0, name: "Syrup", label: "Gomme syrup" }
+      { unit: "cl", amount: 3.0, name: "Syrup", label: "Gomme syrup" },
     ],
     garnish: "Lemon twist",
     preparation:
@@ -183,7 +184,7 @@ let drinks = [
         name: "Syrup",
         label: "Raspberry syrup"
       },
-      { unit: "cl", amount: 1.5, name: "Lemon juice" }
+      { unit: "cl", amount: 1.5, name: "Lemon juice" },
     ],
     preparation: "Shake with ice cubes. Strain into cocktail glass."
   },
@@ -257,7 +258,7 @@ let drinks = [
     category: "Before Dinner Cocktail",
     ingredients: [
       { unit: "cl", amount: 5, name: "Whiskey", label: "Rye whiskey" },
-      { unit: "cl", amount: 2, name: "Vermouth", label: "Red vermouth" }
+      { unit: "cl", amount: 2, name: "Vermouth", label: "Red vermouth" },
     ],
     garnish: "Cherry",
     preparation:
@@ -295,7 +296,7 @@ let drinks = [
     category: "After Dinner Cocktail",
     ingredients: [
       { unit: "cl", amount: 5, name: "Vodka" },
-      { unit: "cl", amount: 1, name: "Coffee liqueur", label: "Kahlúa" }
+      { unit: "cl", amount: 1, name: "Coffee liqueur", label: "Kahlúa" },
     ],
     preparation: "Shake and strain into a chilled cocktail glass."
   },
@@ -502,7 +503,7 @@ let drinks = [
     category: "Sparkling Cocktail",
     ingredients: [
       { unit: "cl", amount: 6, name: "Prosecco" },
-      { unit: "cl", amount: 4, name: "Aperol" }
+      { unit: "cl", amount: 4, name: "Aperol" },
     ],
     garnish: "Half an orange slice",
     preparation:
@@ -581,7 +582,7 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 4.5, name: "Vodka" },
       { unit: "cl", amount: 9, name: "Tomato juice" },
-      { unit: "cl", amount: 1.5, name: "Lemon juice" }
+      { unit: "cl", amount: 1.5, name: "Lemon juice" },
     ],
     garnish: "Celery and optionally lemon wedge",
     preparation: "Stir gently, pour all ingredients into highball glass."
@@ -612,7 +613,7 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 4.5, name: "Dark rum", label: "Gold rum" },
       { unit: "cl", amount: 1.5, name: "Galliano" },
-      { unit: "cl", amount: 6, name: "Pineapple juice" }
+      { unit: "cl", amount: 6, name: "Pineapple juice" },
     ]
   },
   {
@@ -634,7 +635,7 @@ let drinks = [
     category: "All Day Cocktail",
     ingredients: [
       { unit: "cl", amount: 5, name: "Gin" },
-      { unit: "cl", amount: 3, name: "Orange juice" }
+      { unit: "cl", amount: 3, name: "Orange juice" },
     ],
     preparation: "Shake and strain into a chilled cocktail glass."
   },
@@ -642,7 +643,9 @@ let drinks = [
     name: "Derby",
     glass: "martini",
     category: "All Day Cocktail",
-    ingredients: [{ unit: "cl", amount: 6, name: "Gin" }],
+    ingredients: [
+      { unit: "cl", amount: 6, name: "Gin" },
+    ],
     garnish: "Mint leaves",
     preparation:
       "Stir in mixing glass with ice cubes. Strain into a cocktail glass."
@@ -665,7 +668,7 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 4, name: "Whiskey", label: "Irish whiskey" },
       { unit: "cl", amount: 9, name: "Hot coffee" },
-      { unit: "cl", amount: 3, name: "Cream" }
+      { unit: "cl", amount: 3, name: "Cream" },
     ],
     preparation:
       "Warm the Irish whiskey over a burner. Pour into the glass (for hot drink) hot coffee, and add a teaspoon of sugar. Float Cream on top."
@@ -676,7 +679,7 @@ let drinks = [
     category: "After Dinner Cocktail",
     ingredients: [
       { unit: "cl", amount: 5, name: "Cognac" },
-      { unit: "cl", amount: 1, name: "Absinthe" }
+      { unit: "cl", amount: 1, name: "Absinthe" },
     ],
     garnish: "Lemon twist",
     preparation:
@@ -688,7 +691,7 @@ let drinks = [
     category: "Before Dinner Cocktail",
     ingredients: [
       { unit: "cl", amount: 3, name: "Campari" },
-      { unit: "cl", amount: 3, name: "Vermouth", label: "Red vermouth" }
+      { unit: "cl", amount: 3, name: "Vermouth", label: "Red vermouth" },
     ],
     garnish: "Half an orange slice",
     preparation:
@@ -710,7 +713,7 @@ let drinks = [
       { unit: "cl", amount: 0.75, name: "DOM Bénédictine" },
       { unit: "cl", amount: 12.0, name: "Pineapple juice" },
       { unit: "cl", amount: 1.5, name: "Lime juice" },
-      { unit: "cl", amount: 1, name: "Syrup", label: "Grenadine" }
+      { unit: "cl", amount: 1, name: "Syrup", label: "Grenadine" },
     ],
     garnish: "Pineapple slice and a cherry",
     preparation: "Shake with ice cubes. Strain into highball glass."
@@ -732,7 +735,7 @@ let drinks = [
     ingredients: [
       { unit: "cl", amount: 4.5, name: "Vodka" },
       { unit: "cl", amount: 12, name: "Ginger beer" },
-      { unit: "cl", amount: 0.5, name: "Lime juice" }
+      { unit: "cl", amount: 0.5, name: "Lime juice" },
     ],
     garnish: "Lime slice",
     preparation: "Combine the vodka and ginger beer. Add lime juice."
@@ -777,7 +780,7 @@ let drinks = [
         amount: 6,
         name: "Whiskey",
         label: "Bourbon whiskey"
-      }
+      },
     ],
     garnish: "Mint sprig",
     preparation:
@@ -789,7 +792,7 @@ let drinks = [
     category: "All Day Cocktail",
     ingredients: [
       { unit: "cl", amount: 4.5, name: "Tequila" },
-      { unit: "cl", amount: 1.5, name: "Lime juice" }
+      { unit: "cl", amount: 1.5, name: "Lime juice" },
     ],
     preparation: "Shake and strain into a chilled cocktail glass."
   },
@@ -823,7 +826,7 @@ let drinks = [
     category: "Sparkling Cocktail",
     ingredients: [
       { unit: "cl", amount: 9, name: "Champagne" },
-      { unit: "cl", amount: 1, name: "Cognac" }
+      { unit: "cl", amount: 1, name: "Cognac" },
     ],
     garnish: "Orange slice and a cherry",
     preparation:
@@ -884,7 +887,7 @@ let drinks = [
       { unit: "cl", amount: 1.5, name: "Lime juice" },
       { unit: "cl", amount: 1.5, name: "Lemon juice" },
       { unit: "cl", amount: 3, name: "Syrup", label: "Sugar syrup" },
-      { unit: "cl", amount: 6, name: "Cream" }
+      { unit: "cl", amount: 6, name: "Cream" },
     ],
     preparation:
       "Pour all ingredients (except soda) in a mixing glass, dry shake (no ice) for two minutes, add ice and hard shake for another minute. Strain into a highball glass without ice, top with soda."
@@ -981,7 +984,9 @@ let drinks = [
     name: "Caipirinha",
     glass: "old-fashioned",
     category: "All Day Cocktail",
-    ingredients: [{ unit: "cl", amount: 5, name: "Cachaca" }],
+    ingredients: [
+      { unit: "cl", amount: 5, name: "Cachaca" },
+    ],
     preparation:
       "Place lime and sugar in old fashion glass and muddle. Fill glass with ice and Cachaca (note:Caipiroska- use Vodka instead of Cachaca)."
   },
@@ -992,7 +997,7 @@ let drinks = [
       { unit: "cl", amount: 5, name: "Tequila", label: "Silver Tequila" },
       { unit: "cl", amount: 7, name: "Tomato juice" },
       { unit: "cl", amount: 3, name: "Orange juice" },
-      { unit: "cl", amount: 1, name: "Lime juice" }
+      { unit: "cl", amount: 1, name: "Lime juice" },
     ],
     garnish: "Lime wedge and a green or red chili",
     preparation:
@@ -1035,25 +1040,24 @@ let drinks = [
   }
 ];
 
+const ingArr = []; // create a unique list of ingredients from array of drink recipes
+
 drinks.forEach(oneDrink => {
-  oneDrink.ingredientNameArray = [];
-  oneDrink.alcohol = true;
-  oneDrink.userID = null;
-  oneDrink.ingredients.forEach(oneIng => {
-    oneDrink.ingredientNameArray.push(oneIng.name);
+  oneDrink.ingredients.forEach(oneIngredient => {
+    if (oneIngredient.ingredient) {
+      if (!ingArr.includes(oneIngredient.ingredient))
+        ingArr.push(oneIngredient.ingredient);
+    }
   });
-  // oneDrink.ingredients.forEach((oneIngredient, i) => {
-  //   Ingredient.findOne({ name: oneIngredient.name })
-  //     .then(ingredient => {
-  //       if (ingredient) {
-  //         const { _id } = ingredient;
-  //         oneIngredient.ingredientID = _id;
-  //       }
-  //     })
-  //     .catch(err => {
-  //       console.log("err :", err);
-  //     });
-  // });
+});
+
+const ingredients = [];
+
+ingArr.forEach(oneIngredient => {
+  const ingObj = {
+    name: oneIngredient
+  };
+  ingredients.push(ingObj);
 });
 
 mongoose
@@ -1062,10 +1066,10 @@ mongoose
     useUnifiedTopology: true
   })
   .then(() => {
-    return Drink.create(drinks);
+    return Ingredient.create(ingredients);
   })
-  .then(createdDrinks => {
-    console.log(`Inserted ${createdDrinks.length} into database`);
+  .then(createdIng => {
+    console.log(`Inserted ${createdIng.length} into database`);
   })
   .then(() => mongoose.connection.close())
   .then(() => {
