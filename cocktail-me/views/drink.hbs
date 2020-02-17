@@ -16,6 +16,10 @@
 
 <a href="/modify-drink/{{drink._id}}"><button>MODIFY THIS DRINK</button></a>
 <br>
+{{#if drink.userId}}
+  <a href="/delete-drink/{{drink._id}}"><button>DELETE THIS DRINK</button></a>
+  <br>
+{{/if}}
 <a href="/drinks"><button>BACK</button></a>
 <br>
 <a href="/"><button>HOME</button></a>

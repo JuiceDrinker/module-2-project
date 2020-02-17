@@ -13,17 +13,6 @@ sessionRouter.use((req, res, next) => {
   }
 });
 
-//GET favourite of current user
-sessionRouter.get("/favourites", (req, res, next) => {
-  // Find the user
-  User.findById(req.session.currentUser)
-    .then(user => {
-      favs = user.favorites;
-      res.render("favourites", { favs });
-    })
-    .catch(err => {});
-});
-
 //Router to POST a drink
 sessionRouter.post("/add-drink", (req, res, next) => {
   let {
@@ -144,9 +133,13 @@ sessionRouter.get("/modify-drink/:drinkId", (req, res, next) => {
     .catch(err => console.log(err));
 });
 
-//Router to home page
-sessionRouter.get("/", (req, res, next) => {
-  res.render("index");
+//Router to delete a private drink
+sessionRouter.get("/delete-drink/:drinkId", (req, res, next) => {
+  Drink.findByIdAndRemove(req.params.drinkId)
+    .then(() => {
+      res.redirect("/drinks");
+    })
+    .catch(err => console.log(err));
 });
 
 sessionRouter.get("/drink/:drinkId", (req, res, next) => {
@@ -156,6 +149,22 @@ sessionRouter.get("/drink/:drinkId", (req, res, next) => {
       res.render("drink", { drink });
     })
     .catch(err => console.log(err));
+});
+
+//GET favourite of current user
+sessionRouter.get("/favourites", (req, res, next) => {
+  // Find the user
+  User.findById(req.session.currentUser)
+    .then(user => {
+      favs = user.favorites;
+      res.render("favourites", { favs });
+    })
+    .catch(err => {});
+});
+
+//Router to home page
+sessionRouter.get("/", (req, res, next) => {
+  res.render("index");
 });
 
 sessionRouter.get("/search-drinks", (req, res, next) => {
