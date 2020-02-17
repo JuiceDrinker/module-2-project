@@ -13,20 +13,9 @@ sessionRouter.use((req, res, next) => {
   }
 });
 
-//GET favourite of current user
-sessionRouter.get("/favourites", (req, res, next) => {
-  // Find the user
-  User.findById(req.session.currentUser)
-    .then(user => {
-      favs = user.favorites;
-      res.render("favourites", { favs });
-    })
-    .catch(err => {});
-});
-
 //Router to POST a drink
 sessionRouter.post("/add-drink", (req, res, next) => {
-  const {
+  let {
     name,
     glass,
     category,
@@ -44,7 +33,17 @@ sessionRouter.post("/add-drink", (req, res, next) => {
     });
     return;
   }
-  const ingredients = [{ name: ingredient, unit, amount }];
+
+  let newIngredient = ingredient.charAt(0).toUpperCase() + ingredient.slice(1);
+  Ingredient.find({name: newIngredient})
+    .then( (ingredientList) => {
+      if(ingredientList.length === 0) {
+        Ingredient.create({name: newIngredient})
+          .then( () => console.log("Ingredient created."))
+          .catch( (err) => console.log(err));
+      }
+    })
+    .catch( (err) => console.log(err));
 
   Drink.findOne({ name })
     .then(drink => {
@@ -54,7 +53,7 @@ sessionRouter.post("/add-drink", (req, res, next) => {
         });
         return;
       }
-
+      const ingredients = [{name: newIngredient, amount, unit}]
       Drink.create({
         name,
         glass,
@@ -90,12 +89,18 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
     name,
     glass,
     category,
+    garnish,
+    preparation,
     ingredient,
     amount,
     unit,
-    garnish,
-    preparation
   } = req.body;
+
+  let ingredients = [];
+  ingredient.forEach((item, i) => {
+    ingredients.push({name: item, amount: amount[i], unit: unit[i]});
+  });
+
   alcohol = req.body.alcohol === "on" ? true : false;
 
   Drink.findOneAndUpdate(
@@ -128,9 +133,13 @@ sessionRouter.get("/modify-drink/:drinkId", (req, res, next) => {
     .catch(err => console.log(err));
 });
 
-//Router to home page
-sessionRouter.get("/", (req, res, next) => {
-  res.render("index");
+//Router to delete a private drink
+sessionRouter.get("/delete-drink/:drinkId", (req, res, next) => {
+  Drink.findByIdAndRemove(req.params.drinkId)
+    .then(() => {
+      res.redirect("/drinks");
+    })
+    .catch(err => console.log(err));
 });
 
 sessionRouter.get("/drink/:drinkId", (req, res, next) => {
@@ -140,6 +149,22 @@ sessionRouter.get("/drink/:drinkId", (req, res, next) => {
       res.render("drink", { drink });
     })
     .catch(err => console.log(err));
+});
+
+//GET favourite of current user
+sessionRouter.get("/favourites", (req, res, next) => {
+  // Find the user
+  User.findById(req.session.currentUser)
+    .then(user => {
+      favs = user.favorites;
+      res.render("favourites", { favs });
+    })
+    .catch(err => {});
+});
+
+//Router to home page
+sessionRouter.get("/", (req, res, next) => {
+  res.render("index");
 });
 
 sessionRouter.get("/search-drinks", (req, res, next) => {
