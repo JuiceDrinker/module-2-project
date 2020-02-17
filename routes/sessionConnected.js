@@ -107,23 +107,48 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
 
   alcohol = req.body.alcohol === "on" ? true : false;
 
-  Drink.findOneAndUpdate(
-    { userId: req.session.currentUser },
-    {
-      name,
-      glass,
-      category,
-      ingredients,
-      garnish,
-      preparation,
-      alcohol
-    },
-    { new: true }
-  )
-    .then(() => {
-      res.redirect("/drinks");
+  Drink.find({_id: drinkId})
+    .then( (drink) => {
+      if (!drink.userId) {
+        Drink.create({
+          name,
+          glass,
+          category,
+          ingredients,
+          garnish,
+          preparation,
+          alcohol,
+          userId: req.session.currentUser,
+          private: true,
+        })
+        .then( () => {
+          res.redirect("/drinks");
+        })
+        .catch( (err) => console.log(err));
+
+
+      } else {
+        Drink.findOneAndUpdate(
+          { userId: req.session.currentUser },
+          {
+            name,
+            glass,
+            category,
+            ingredients,
+            garnish,
+            preparation,
+            alcohol
+          },
+          { new: true }
+        )
+          .then(() => {
+            res.redirect("/drinks");
+          })
+          .catch(err => console.log(err));
+      }
     })
-    .catch(err => console.log(err));
+    .catch( (err) => console.log(err));
+
 });
 
 //Router to modify one drink
