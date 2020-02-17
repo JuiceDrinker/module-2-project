@@ -5,7 +5,7 @@ const Drink = require("./../models/Drink");
 const Ingredient = require("./../models/Ingredient");
 const User = require("./../models/User");
 
-sessionRouter.use((req, res, next) => { 
+sessionRouter.use((req, res, next) => {
   if (req.session.currentUser) {
     next();
   } else {
@@ -14,16 +14,15 @@ sessionRouter.use((req, res, next) => {
 });
 
 //GET favourite of current user
-sessionRouter.get('favourite/:userID'(req,res,next) => {
+sessionRouter.get("/favourites", (req, res, next) => {
   // Find the user
-  User.findById(userID)
-  .then((user) => {
-
-    res.render('favourites', {user.favourites})
-  }).catch((err) => {
-    
-  });
-})
+  User.findById(req.session.currentUser)
+    .then(user => {
+      favs = user.favorites;
+      res.render("favourites", { favs });
+    })
+    .catch(err => {});
+});
 
 //Router to POST a drink
 sessionRouter.post("/add-drink", (req, res, next) => {
@@ -45,12 +44,14 @@ sessionRouter.post("/add-drink", (req, res, next) => {
     });
     return;
   }
-  const ingredients = [{name: ingredient, unit, amount}]
+  const ingredients = [{ name: ingredient, unit, amount }];
 
-  Drink.findOne({name})
-    .then( (drink) => {
+  Drink.findOne({ name })
+    .then(drink => {
       if (drink) {
-        res.render("add-drink-form", {messageError: "This drink name already exists."});
+        res.render("add-drink-form", {
+          messageError: "This drink name already exists."
+        });
         return;
       }
 
@@ -63,20 +64,23 @@ sessionRouter.post("/add-drink", (req, res, next) => {
         preparation,
         alcohol,
         private: true,
-        userId: req.session.currentUser._id,
+        userId: req.session.currentUser._id
       })
-        .then((drink) => {
-          User.findOneAndUpdate({_id: User._id}, {$push: {privateDrinks: {drinkId: drink._id}}})
-            .then( () => {
+        .then(drink => {
+          User.findOneAndUpdate(
+            { _id: User._id },
+            { $push: { privateDrinks: { drinkId: drink._id } } }
+          )
+            .then(() => {
               res.redirect(`/drink/${drink._id}`);
             })
-            .catch( (err) => console.log(err));
+            .catch(err => console.log(err));
         })
         .catch(err => {
           console.log(err);
         });
     })
-    .catch( (err) => console.log(err));
+    .catch(err => console.log(err));
 });
 
 //Router to modify one drink
@@ -94,30 +98,34 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
   } = req.body;
   alcohol = req.body.alcohol === "on" ? true : false;
 
-  Drink.findOneAndUpdate({userId: req.session.currentUser}, {
-    name,
-    glass,
-    category,
-    ingredient,
-    amount,
-    unit,
-    garnish,
-    preparation,
-    alcohol
-    }, {new: true})
-    .then( () => {
+  Drink.findOneAndUpdate(
+    { userId: req.session.currentUser },
+    {
+      name,
+      glass,
+      category,
+      ingredient,
+      amount,
+      unit,
+      garnish,
+      preparation,
+      alcohol
+    },
+    { new: true }
+  )
+    .then(() => {
       res.redirect("/drinks");
     })
-    .catch( (err) => console.log(err));
+    .catch(err => console.log(err));
 });
 
 //Router to modify one drink
 sessionRouter.get("/modify-drink/:drinkId", (req, res, next) => {
   Drink.findById(req.params.drinkId)
-    .then( (drink) => {
-      res.render("modify-drink-form", {drink});
+    .then(drink => {
+      res.render("modify-drink-form", { drink });
     })
-    .catch( (err) => console.log(err));
+    .catch(err => console.log(err));
 });
 
 //Router to home page
@@ -127,31 +135,31 @@ sessionRouter.get("/", (req, res, next) => {
 
 sessionRouter.get("/drink/:drinkId", (req, res, next) => {
   const drinkId = req.params.drinkId;
-  Drink.findOne({_id: drinkId})
-    .then( (drink) => {
-      res.render("drink", {drink});
+  Drink.findOne({ _id: drinkId })
+    .then(drink => {
+      res.render("drink", { drink });
     })
-    .catch( (err) => console.log(err));
+    .catch(err => console.log(err));
 });
 
 sessionRouter.get("/search-drinks", (req, res, next) => {
   Ingredient.find({})
-    .then( (ingredients) => {
-      res.render("find-drinks", {ingredients});
+    .then(ingredients => {
+      res.render("find-drinks", { ingredients });
     })
-    .catch( (err) => console.log(err))
+    .catch(err => console.log(err));
 });
 
 sessionRouter.get("/drinks", (req, res, next) => {
-  Drink.find({private: false})
-    .then( (publicDrinks) => {
-      Drink.find({userId: req.session.currentUser})
-        .then( (userDrinks) => {
-          res.render("all-drinks", {publicDrinks, userDrinks});
+  Drink.find({ private: false })
+    .then(publicDrinks => {
+      Drink.find({ userId: req.session.currentUser })
+        .then(userDrinks => {
+          res.render("all-drinks", { publicDrinks, userDrinks });
         })
-        .catch( (err) => console.log(err));
+        .catch(err => console.log(err));
     })
-    .catch( (err) => console.log(err))
+    .catch(err => console.log(err));
 });
 
 sessionRouter.get("/logout", (req, res, next) => {
