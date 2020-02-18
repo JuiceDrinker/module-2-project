@@ -1,3 +1,4 @@
+<a href="/"><button>Home</button></a>
 <h1>ADD NEW DRINK</h1>
 <form action="/add-drink" method="post" id="main-form">
   <input type="text" name="name" placeholder="Drink name *">
@@ -6,20 +7,14 @@
   <br>
   <input type="text" name="category" placeholder="Category">
   <br>
-  <fieldset id="ing-forms">
-    <label for=''>Add ingredients</label>
-    {{!-- <input type='text' name='ingredient' placeholder="Ingredient name *"> --}}
-    <button type='button' id="add-ingredient-input">Add</button>
-  </fieldset>
-
-  {{!-- <br>
-  <input type=" number" name="amount" placeholder="Amount *">
-  <br>
-  <input type="text" name="unit" placeholder="Unit *"> --}}
-  <br>
   <input type="text" name="garnish" placeholder="Garnish">
   <br>
   <input type="text" name="preparation" placeholder="Preparation *">
+  <br>
+  <fieldset id="ing-forms">
+    <label for=''>Add ingredients</label>
+    <button type='button' id="add-ingredient-input">Add</button>
+  </fieldset>
   <br>
   <label><input type="checkbox" name="alcohol" checked="true" value="">Alcohol</label>
   <br>
@@ -28,7 +23,6 @@
 
 
 
-<a href="/"><button>Home</button></a>
 
 {{#if messageError}}
 <p>{{messageError}}</p>
