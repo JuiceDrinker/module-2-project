@@ -108,8 +108,27 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
   alcohol = req.body.alcohol === "on" ? true : false;
 
   Drink.find({_id: drinkId})
-    .then( (drink) => {
-      if (!drink.userId) {
+    .then( (drinkArr) => {
+      let drink = drinkArr[0]
+      if (String(drink.userId) === String(req.session.currentUser._id)) {
+        Drink.findOneAndUpdate({userId: req.session.currentUser._id},
+          {
+          name,
+          glass,
+          category,
+          ingredients,
+          garnish,
+          preparation,
+          alcohol
+          })
+          .then(() => {
+            res.redirect("/drinks");
+          })
+          .catch(err => console.log(err));
+      } else {
+        const private = true;
+        const userId = req.session.currentUser._id;
+
         Drink.create({
           name,
           glass,
@@ -118,33 +137,13 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
           garnish,
           preparation,
           alcohol,
-          userId: req.session.currentUser,
-          private: true,
+          userId,
+          private,
         })
         .then( () => {
           res.redirect("/drinks");
         })
         .catch( (err) => console.log(err));
-
-
-      } else {
-        Drink.findOneAndUpdate(
-          { userId: req.session.currentUser },
-          {
-            name,
-            glass,
-            category,
-            ingredients,
-            garnish,
-            preparation,
-            alcohol
-          },
-          { new: true }
-        )
-          .then(() => {
-            res.redirect("/drinks");
-          })
-          .catch(err => console.log(err));
       }
     })
     .catch( (err) => console.log(err));
@@ -176,17 +175,6 @@ sessionRouter.get("/drink/:drinkId", (req, res, next) => {
       res.render("drink", { drink });
     })
     .catch(err => console.log(err));
-});
-
-//GET favourite of current user
-sessionRouter.get("/favourites", (req, res, next) => { ///BACKLOG
-  // Find the user
-  User.findById(req.session.currentUser)
-    .then(user => {
-      favs = user.favorites;
-      res.render("favourites", { favs });
-    })
-    .catch(err => {});
 });
 
 //Router to home page
@@ -256,7 +244,8 @@ sessionRouter.get("/add-drink", (req, res, next) => {
 
 //Router to profile page
 sessionRouter.get("/my-profile", (req, res, next) => {
-  res.render("profile");
+  const user = req.session.currentUser;
+  res.render("profile", {user});
 });
 
 //Router to random drink page
