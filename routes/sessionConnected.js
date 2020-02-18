@@ -20,7 +20,7 @@ sessionRouter.post("/add-drink", (req, res, next) => {
     name,
     glass,
     category,
-    ingredient,
+    ingredients,
     amount,
     unit,
     garnish,
@@ -28,23 +28,12 @@ sessionRouter.post("/add-drink", (req, res, next) => {
   } = req.body;
   alcohol = req.body.alcohol === "on" ? true : false;
 
-  if (name === "" || ingredient === "" || amount === "" || unit === "") {
+  if (name === "" || ingredients === "" || amount === "" || unit === "") {
     res.render("add-drink-form", {
       messageError: "You need to complete the required (*) info."
     });
     return;
   }
-
-  let newIngredient = ingredient.charAt(0).toUpperCase() + ingredient.slice(1);
-  Ingredient.find({ name: newIngredient })
-    .then(ingredientList => {
-      if (ingredientList.length === 0) {
-        Ingredient.create({ name: newIngredient })
-          .then(() => console.log("Ingredient created."))
-          .catch(err => console.log(err));
-      }
-    })
-    .catch(err => console.log(err));
 
   Drink.findOne({ name })
     .then(drink => {
@@ -54,12 +43,31 @@ sessionRouter.post("/add-drink", (req, res, next) => {
         });
         return;
       }
-      const ingredients = [{ name: newIngredient, amount, unit }];
+
+      let allIngredients = [];
+      if (Array.isArray(ingredients)) {
+        ingredients.forEach((ingredient, i) => {
+          Ingredient.find({ name: ingredient })
+            .then(ingredientList => {
+              if (ingredientList.length === 0) {
+                Ingredient.create({ name: ingredient })
+                  .then(() => console.log("Ingredient created."))
+                  .catch(err => console.log(err));
+              }
+            })
+            .catch(err => console.log(err));
+
+            allIngredients.push({ name: ingredient, amount: amount[i], unit: unit[i] });
+        });
+      } else {
+        allIngredients = [{name: ingredients, amount, unit}];
+      }
+
       Drink.create({
         name,
         glass,
         category,
-        ingredients,
+        ingredients: allIngredients,
         garnish,
         preparation,
         alcohol,

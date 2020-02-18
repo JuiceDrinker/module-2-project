@@ -6,9 +6,9 @@ addIngButton.addEventListener("click", event => {
   const HTMLelement = `
     <fieldset>
     <label for=''>Name</label>
-    <input type='text' name='name'>
+    <input type='text' name='ingredients'>
     <label for=''>Qty</label>
-    <input type='text' name='qty'>
+    <input type='text' name='amount'>
     <label for=''>Unit</label>
     <input type='text' name='unit'>
     </fieldset>
