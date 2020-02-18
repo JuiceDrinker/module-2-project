@@ -269,4 +269,19 @@ sessionRouter.get("/random-drink", (req, res, next) => {
     .catch(err => console.log(err));
 });
 
+//Delete user account
+sessionRouter.get("/delete-account", (req, res) => {
+  User.findByIdAndRemove(req.session.currentUser)
+    .then( () => {
+      req.session.destroy(err => {
+        if (err) {
+          res.redirect("/");
+        } else {
+          res.redirect("/signup")
+        }
+      });
+    })
+    .catch( (err) => console.log(err));
+})
+
 module.exports = sessionRouter;
