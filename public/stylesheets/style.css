@@ -19,3 +19,8 @@ table {
 
 /* CSS Reset above. */
 
+nav{
+  display: flex;
+  flex-direction: row;
+}
+
