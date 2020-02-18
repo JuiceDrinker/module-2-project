@@ -5,7 +5,8 @@ const Drink = require("./../models/Drink");
 const Ingredient = require("./../models/Ingredient");
 const User = require("./../models/User");
 
-sessionRouter.use((req, res, next) => {  //Everything below this are protected routes
+sessionRouter.use((req, res, next) => {
+  //Everything below this are protected routes
   if (req.session.currentUser) {
     next();
   } else {
@@ -146,8 +147,7 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
         .catch( (err) => console.log(err));
       }
     })
-    .catch( (err) => console.log(err));
-
+    .catch(err => console.log(err));
 });
 
 //Router to modify one drink
@@ -177,6 +177,18 @@ sessionRouter.get("/drink/:drinkId", (req, res, next) => {
     .catch(err => console.log(err));
 });
 
+//GET favourite of current user
+sessionRouter.get("/favourites", (req, res, next) => {
+  ///BACKLOG
+  // Find the user
+  User.findById(req.session.currentUser)
+    .then(user => {
+      favs = user.favorites;
+      res.render("favourites", { favs });
+    })
+    .catch(err => {});
+});
+
 //Router to home page
 sessionRouter.get("/", (req, res, next) => {
   res.render("index");
@@ -192,26 +204,27 @@ sessionRouter.get("/search-drinks", (req, res, next) => {
 
 sessionRouter.post("/search-drinks", (req, res, next) => {
   const { name, ingredients } = req.body;
-  nameArr = name ? name.split(" ") : [];
-  console.log("nameArr :", nameArr);
-  ingArr = ingredients ? ingredients.split(" ") : [];
-
+  nameArr = name ? name.trim().split(" ") : [];
+  ingArr = ingredients ? ingredients.trim().split(" ") : [];
   const searchQuery = {};
+  const regexName = nameArr.join("|");
+  const regexIng = ingArr.join("|");
 
   if (nameArr.length > 0) {
-    searchQuery.name = { $in: nameArr };
-    // ingredientNameArray: { $in: ingArr },
+    searchQuery.name = { $regex: regexName, $options: "i" };
   }
   if (ingArr.length > 0) {
-    searchQuery.ingredientNameArray = { $in: ingArr };
+    searchQuery.ingredientNameArray = {
+      $regex: regexIng,
+      $options: "i"
+    };
   }
-
   Drink.find(searchQuery)
     .then(searchQuery => {
-      res.render('search-result',{searchQuery});
+      res.render("search-result", { searchQuery });
     })
     .catch(err => {
-      consle.log(err);
+      console.log(err);
     });
 });
 
@@ -261,16 +274,16 @@ sessionRouter.get("/random-drink", (req, res, next) => {
 //Delete user account
 sessionRouter.get("/delete-account", (req, res) => {
   User.findByIdAndRemove(req.session.currentUser)
-    .then( () => {
+    .then(() => {
       req.session.destroy(err => {
         if (err) {
           res.redirect("/");
         } else {
-          res.redirect("/signup")
+          res.redirect("/signup");
         }
       });
     })
-    .catch( (err) => console.log(err));
-})
+    .catch(err => console.log(err));
+});
 
 module.exports = sessionRouter;
