@@ -147,7 +147,7 @@ table {
   z-index: -1;
 }
 .layer {
-  background-color: rgba(0, 0, 0, 0.85); /* 0.9 for deploy, 0.1 for dev */
+  background-color: rgba(0, 0, 0, 0.1); /* 0.9 for deploy, 0.1 for dev */
   position: absolute;
   top: 0;
   left: 0;
