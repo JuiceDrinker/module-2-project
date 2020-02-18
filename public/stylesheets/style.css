@@ -128,3 +128,27 @@ table {
   border-spacing: 0;
 }
 
+/* CSS reset above, Styling starts below*/
+
+* {
+  box-sizing: border-box;
+  border: 1px red solid; /* For dev purposes only. REMOVE FOR DEPLOYMENT*/
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.nav-items {
+  padding: 20px 10px;
+}
+
+.home-button {
+}
+
+.fa-bars {
+  padding: 50px;
+}
