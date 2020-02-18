@@ -147,7 +147,7 @@ table {
   z-index: -1;
 }
 .layer {
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.85); /* 0.9 for deploy, 0.1 for dev */
   position: absolute;
   top: 0;
   left: 0;
@@ -165,11 +165,4 @@ table {
 
 .nav-items {
   padding: 20px 10px;
-}
-
-.home-button {
-}
-
-.fa-bars {
-  padding: 50px;
 }
