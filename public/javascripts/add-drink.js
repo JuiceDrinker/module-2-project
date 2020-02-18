@@ -1,9 +1,9 @@
-const ingForm = document.querySelector("#ing-forms");
+const ingForm = document.querySelector("#main-form #ing-forms");
 const addIngButton = document.querySelector("#add-ingredient-input");
-
-ingForm.addEventListener("submit", event => {
+console.log(ingForm);
+addIngButton.addEventListener("click", event => {
   event.preventDefault();
-  // const inputNum = ingForm.querySelectorAll('input').length;
+  console.log("hellooooooooooooooooooo :");
   const div = document.createElement("div");
   const HTMLelement = `
     <fieldset>
