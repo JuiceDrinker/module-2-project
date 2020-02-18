@@ -156,13 +156,23 @@ table {
   z-index: 0;
 }
 
+nav {
+  display: block;
+}
+
 .nav-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .nav-items {
   padding: 20px 10px;
+}
+
+.logo-home {
+  margin-right: 80%;
+  width: 150px;
+  height: 100px;
 }
