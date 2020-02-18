@@ -120,7 +120,8 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
     .then( (drinkArr) => {
       let drink = drinkArr[0]
       if (String(drink.userId) === String(req.session.currentUser._id)) {
-        Drink.findOneAndUpdate({userId: req.session.currentUser._id},
+        console.log("AQUI")
+        Drink.findByIdAndUpdate(drink._id,
           {
           name,
           glass,
@@ -137,9 +138,9 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
       } else {
         const private = true;
         const userId = req.session.currentUser._id;
-
+        let newName = req.session.currentUser.username + "'s " + drink.name;
         Drink.create({
-          name,
+          name: newName,
           glass,
           category,
           ingredients,
@@ -149,7 +150,8 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
           userId,
           private,
         })
-        .then( () => {
+        .then( (newdrink) => {
+          console.log(newdrink);
           res.redirect("/drinks");
         })
         .catch( (err) => console.log(err));
@@ -183,18 +185,6 @@ sessionRouter.get("/drink/:drinkId", (req, res, next) => {
       res.render("drink", { drink });
     })
     .catch(err => console.log(err));
-});
-
-//GET favourite of current user
-sessionRouter.get("/favourites", (req, res, next) => {
-  ///BACKLOG
-  // Find the user
-  User.findById(req.session.currentUser)
-    .then(user => {
-      favs = user.favorites;
-      res.render("favourites", { favs });
-    })
-    .catch(err => {});
 });
 
 //Router to home page
@@ -239,10 +229,12 @@ sessionRouter.post("/search-drinks", (req, res, next) => {
 sessionRouter.get("/drinks", (req, res, next) => {
   Drink.find({ private: false })
     .then(publicDrinks => {
-      Drink.find({ userId: req.session.currentUser })
-        .then(userDrinks => {
-          publicDrinks.concat(userDrinks);
-          let drinksArr = publicDrinks.sort((a, b) => {
+      Drink.find({ userId: req.session.currentUser._id })
+      .then(userDrinks => {
+        console.log("db:", publicDrinks.length);
+          let newArr = [...publicDrinks, ...userDrinks];
+          console.log("user:", userDrinks.length);
+          let drinksArr = newArr.sort((a, b) => {
             if (a.name > b.name) {
               return 1;
             }
@@ -252,6 +244,7 @@ sessionRouter.get("/drinks", (req, res, next) => {
             return 0;
           })
           res.render("all-drinks", { drinksArr });
+          console.log("concat:", drinksArr.length);
         })
         .catch(err => console.log(err));
     })
