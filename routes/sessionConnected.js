@@ -233,7 +233,17 @@ sessionRouter.get("/drinks", (req, res, next) => {
     .then(publicDrinks => {
       Drink.find({ userId: req.session.currentUser })
         .then(userDrinks => {
-          res.render("all-drinks", { publicDrinks, userDrinks });
+          publicDrinks.concat(userDrinks);
+          let drinksArr = publicDrinks.sort((a, b) => {
+            if (a.name > b.name) {
+              return 1;
+            }
+            if (a.name < b.name) {
+              return -1;
+            }
+            return 0;
+          })
+          res.render("all-drinks", { drinksArr });
         })
         .catch(err => console.log(err));
     })
