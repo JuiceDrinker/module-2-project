@@ -232,24 +232,31 @@ ol {
   margin-left: 25%;
 }
 
+
 .top button,
 .bot button,
 .search-btn button {
   color: black;
+  font-weight: bolder;
+  font-size: 15px;
   height: 100px;
   width: 200px;
   padding: 0px 20px;
-
+  
   background-color: #eafff8;
   border: 1px solid #98c9b8;
   border-radius: 25px;
   box-shadow: 6px 6px 18px #729b8d;
-
+  
   margin-left: 40px;
   margin-top: -40px;
   margin-bottom: -50px;
 }
 
+.search-btn button {
+  margin-left: -60px;
+  width: 400px;
+}
 /*# sourceMappingURL=style.css.map */
 
 .all-drinks-section {
@@ -450,4 +457,14 @@ p {
 .space-top {
   margin-top: 50px;
   margin-left: 30px;
+}
+
+.non-btn button {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }
