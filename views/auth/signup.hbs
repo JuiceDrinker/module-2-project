@@ -1,20 +1,22 @@
-<form action="/signup" method="post">
-  <input type="text" name="username" placeholder="Username">
-  <br>
-  <input type="email" name="email" placeholder="Email">
-  <br>
-  <input type="password" name="password" placeholder="Password">
-  <br>
-  <input type="password" name="repeatedPassword" placeholder="Repeat password">
-  <br>
-  <label><input id="terms" type="checkbox" name="terms" required>Accept the terms and conditions.</label>
-  <br>
-  <label><input id="news" type="checkbox" name="news" value="false">Subscribe to our newsletter!</label>
-  <br>
-  <button>SIGNUP</button>
-</form>
+<div class='sign-up'>
+  <div>
+    <img src="../images/logo.png" alt="" class='login-logo'>
+  </div>
+  <div class='signup-form'>
+    <form action="/signup" method="post">
+      <input type="text" name="username" placeholder="Username">
+      <input type="email" name="email" placeholder="Email">
+      <input type="password" name="password" placeholder="Password">
+      <input type="password" name="repeatedPassword" placeholder="Repeat password">
+      <label><input id="terms" type="checkbox" name="terms" required>Accept the terms and conditions.</label>
+      <label><input id="news" type="checkbox" name="news" value="false">Subscribe to our newsletter!</label>
+      <button>SIGNUP</button>
+    </form>
 
-<a href="/">Go to login page</a>
+    <a href="/">Go to login page</a>
+  </div>
+</div>
+
 
 {{#if messageError}}
 <p>{{messageError}}</p>
