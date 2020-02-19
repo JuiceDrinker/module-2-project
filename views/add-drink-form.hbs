@@ -20,11 +20,13 @@
     <div>
     <label id="checkbox"><input type="checkbox" name="alcohol" checked="true" value="">Alcohol</label>
     </div>
-    <button>ADD</button>
+    <div class="drink-buttons non-btn">
+      <button>ADD</button>
+    </div>
   </form>
 
   {{#if messageError}}
-  <p>{{messageError}}</p>
+  <p class="message-error">{{messageError}}</p>
   {{/if}}
 
 <script src="/javascripts/add-drink.js"></script>

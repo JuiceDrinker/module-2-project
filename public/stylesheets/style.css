@@ -229,7 +229,7 @@ ol {
   align-content: center;
 }
 .search-btn {
-  margin-left: 25%;
+  margin-left: 22%;
 }
 
 
@@ -255,7 +255,7 @@ ol {
 
 .search-btn button {
   margin-left: -60px;
-  width: 400px;
+  width: 440px;
 }
 /*# sourceMappingURL=style.css.map */
 
@@ -494,4 +494,8 @@ h3 {
 	font: inherit;
 	cursor: pointer;
   outline: inherit;
+}
+
+.message-error {
+  color: red;
 }
