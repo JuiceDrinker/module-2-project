@@ -1,10 +1,13 @@
 <h1>HERE YOU HAVE ALL THE DRINKS</h1>
-<ul>
+<div class="all-drinks-section">
   {{#each drinksArr}}
-    <li>
-      <a href="/drink/{{this._id}}">{{this.name}}</a>
-      <br>
-      <p>#{{this.glass}}</p>
-    </li>
+    <a href="/drink/{{this._id}}">
+      <div class="all-drinks">
+        <h1>{{this.name}}</h1>
+        {{#if this.glass}}
+          <p>#{{this.glass}}</p>
+        {{/if}}
+      </div>
+    </a>
   {{/each}}
-</ul>
+</div>
