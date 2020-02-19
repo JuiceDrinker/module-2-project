@@ -207,26 +207,23 @@ ol {
   height: 500px;
   width: 500px;
   display: flex;
-  flex-direction: flex;
-  align-items: center;
-  align-content: center;
+  flex-direction: column;
+  margin: 0 auto;
   justify-content: space-around;
-  flex-wrap: wrap;
 }
 
-.index-container div {
-  width: 40%;
-  height: 50%;
-}
-
-.menu-items {
+.top,
+.bot {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
 }
-.menu-items button {
-  width: 300px;
-  height: 100px;
+
+.top button,
+.bot button {
   color: black;
+  height: 100px;
+  width: 200px;
 }
 
 /*# sourceMappingURL=style.css.map */

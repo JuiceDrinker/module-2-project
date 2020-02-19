@@ -12,52 +12,48 @@
 </head>
 
 <div class='bg-img'>
-  <div class="layer">
-    <header>
-      <nav>
-
-        <div>
-          <ul class='nav-container'>
-
-            <div class='logo-container'>
-              <a href="/"><img class="logo-home" src="../images/logo.png" alt="logo"></a>
-            </div>
-            <div>
-              <a href="/search-drinks" class="cards">
-                <li class='nav-items'>Find</li>
-              </a>
-              <a href="/my-profile" class="cards">
-                <li class='nav-items'>Profile</li>
-              </a>
-              <a href="/random-drink" class="cards">
-                <li class='nav-items'>Random Drink</li>
-              </a>
-              <a href="/add-drink" class="cards">
-                <li class='nav-items'>Add Drink</li>
-              </a>
-              <a href="/drinks" class="cards">
-                <li class='nav-items'>All drinks</li>
-              </a>
-            </div>
-
-          </ul>
-        </div>
-      </nav>
-    </header>
+  <header>
+    <div class='logo-container'>
+      <a href="/"><img class="logo-home" src="../images/logo.png" alt="logo"></a>
+    </div>
+    <nav>
+      <div>
+        <ul class='nav-container'>
+          <div>
+            <a href="/search-drinks" class="cards">
+              <li class='nav-items'>Find</li>
+            </a>
+            <a href="/my-profile" class="cards">
+              <li class='nav-items'>Profile</li>
+            </a>
+            <a href="/random-drink" class="cards">
+              <li class='nav-items'>Random Drink</li>
+            </a>
+            <a href="/add-drink" class="cards">
+              <li class='nav-items'>Add Drink</li>
+            </a>
+            <a href="/drinks" class="cards">
+              <li class='nav-items'>All drinks</li>
+            </a>
+          </div>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
 
-    <body>
-      {{{body}}}
-      <script>
-        if (window.location.pathname === '/') {
-          const nav = document.querySelector('nav');
-          nav.style.display = "none";
-        }
+  <body>
+    {{{body}}}
+    <script>
+      if (window.location.pathname === '/') {
+        const nav = document.querySelector('nav');
+        nav.style.display = "none";
+      }
 
-      </script>
-      <script src="/javascripts/script.js"></script>
-    </body>
-  </div>
+    </script>
+    <script src="/javascripts/script.js"></script>
+  </body>
+</div>
 
 
 
