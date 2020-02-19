@@ -135,7 +135,7 @@ table {
 
 * {
   box-sizing: border-box;
-  border: 1px red solid; /* For dev purposes only. REMOVE FOR DEPLOYMENT*/
+  /* border: 1px red solid; For dev purposes only. REMOVE FOR DEPLOYMENT */
   color: white;
 }
 
@@ -184,17 +184,19 @@ ol {
 
 .logo-container {
   display: fixed;
+  margin-left: 45px;
+  margin-top: 15px;
 }
 
 .logo-home {
-  width: 150px;
-  height: 150px;
+  width: 50px;
+  height: 50px;
 }
 
 .logo-home:hover {
   content: url("../images/logo_hover.png");
-  width: 150px;
-  height: 150px;
+  width: 50px;
+  height: 50px;
 }
 .cards {
   z-index: 2;
@@ -209,10 +211,13 @@ ol {
   border: 1px red solid;
   height: 500px;
   width: 500px;
+  /* padding: 100px; */
+  /* margin-left: 35%; */
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   justify-content: space-around;
+  
 }
 
 .top,
@@ -220,6 +225,27 @@ ol {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 0 auto;
+  align-content: center;
+  
+}
+
+.top button {
+  padding: 0px 20px;
+  background-color: #eafff8;
+  border: 1px solid #98c9b8;
+  border-radius: 25px;
+  box-shadow: 6px 6px 18px #729b8d;
+}
+
+.bot button {
+  padding: 0px 20px;
+  background-color: #eafff8;
+  border: 1px solid #98c9b8;
+  border-radius: 25px;
+  box-shadow: 6px 6px 18px #729b8d;
+  margin-left: 50px;
+  margin-top: -20px;
 }
 
 .top button,
@@ -354,4 +380,38 @@ p {
   padding: 8px 11px;
   color: rgb(199, 253, 245);
   margin: 15px;
+}
+
+.drink-section input {
+  background-color: transparent;
+  /* background-color: #eafff8; */
+  border: 0px;
+  border-bottom: 2px solid darkslategray;
+  text-decoration: none;
+  color: black;
+  width: 120px;
+  margin-left: 20px;
+
+}
+
+.indentent-input-li {
+  margin-left: -40px;
+}
+
+.drink-section textarea {
+  width: 500px;
+  height: 100px;
+  margin-left: 20px;
+  color: black;
+  background-color: #eafff8;
+  border: 2px solid darkslategray;
+  outline: none;
+  box-shadow: none;
+}
+.drink-section li {
+  color: black;
+}
+
+#checkbox {
+  color: black;
 }
