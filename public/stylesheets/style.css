@@ -442,7 +442,7 @@ p {
 
 .login-form {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 }
 
 #ing-forms label {
@@ -450,13 +450,40 @@ p {
   margin-top: 15px;
 }
 
-.indention-prof p, h3 {
+.indention-prof p,
+h3 {
   text-indent: 50px;
 }
 
 .space-top {
   margin-top: 50px;
   margin-left: 30px;
+}
+
+.login {
+  font-size: 36px;
+  text-align: center;
+}
+
+.log-sign {
+  font-size: 24px;
+}
+
+.log-sign button {
+  text-align: center;
+}
+.username,
+.password {
+  display: flex;
+  align-items: center;
+  justify-items: space-between;
+  justify-content: space-between;
+}
+.username input,
+.password input {
+  color: black;
+  margin-left: 10px;
+  height: 100%;
 }
 
 .non-btn button {
@@ -466,5 +493,5 @@ p {
 	padding: 0;
 	font: inherit;
 	cursor: pointer;
-	outline: inherit;
+  outline: inherit;
 }

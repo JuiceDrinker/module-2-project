@@ -5,19 +5,22 @@
   <div>
     <div class='login-form'>
       <form action="/login" method="post">
-        <label for="">Username</label>
-        <input type="text" name="username" placeholder="Username">
-        <br>
-        <label for="">Password</label>
-        <input type="password" name="password" placeholder="Password">
+        <div class='username'>
+          <label for="">Username</label>
+          <input type="text" name="username" placeholder="Username">
+        </div>
+        <div class="password">
+          <label for="">Password</label>
+          <input type="password" name="password" placeholder="Password">
+        </div>
     </div>
-    <div>
+    <div class='log-sign'>
+      <button>LOGIN</button>
+      <br>
       <a href="/signup">SIGN UP!</a>
       <a href="#">Forgot password</a>
-      <button>LOGIN</button>
       </form>
     </div>
-
   </div>
 </div>
 
