@@ -43,11 +43,14 @@
   <body>
     {{{body}}}
     <script>
-      if (window.location.pathname === '/' || window.location.pathname === '/login' || window.location.pathname === '/signup') {
+      if (window.location.pathname === '/') {
         const nav = document.querySelector('nav');
         nav.style.display = "none";
       }
-
+      if (window.location.pathname === '/login' || window.location.pathname === '/signup') {
+        const header = document.querySelector('header')
+        header.style.display = 'none';
+      }
     </script>
     <script src="/javascripts/script.js"></script>
   </body>
