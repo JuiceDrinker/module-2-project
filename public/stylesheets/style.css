@@ -148,6 +148,7 @@ table {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow: scroll;
 }
 
 nav {
@@ -221,4 +222,72 @@ ol {
 .menu-items {
   display: flex;
   flex-wrap: wrap;
+}
+.menu-items button {
+  width: 300px;
+  height: 100px;
+  color: black;
+}
+
+/*# sourceMappingURL=style.css.map */
+
+.all-drinks-section {
+  width: 80%;
+  height: 50%;
+  margin-left: 9%;
+  margin-bottom: 7%;
+
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: baseline;
+	align-content: stretch;
+}
+
+/* MINT COLOR: rgb(199, 253, 245) */
+.all-drinks {
+  background-color: #EAFFF8;
+  border: 1px solid #98C9B8;
+  border-radius: 25px;
+  box-shadow: 6px 6px 18px #729B8D;
+
+  padding: 20px;
+  width: 135px;
+  height: 95px;
+  margin-top: 25px;
+
+  text-overflow: inherit;
+  display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: baseline;
+	align-content: stretch;
+}
+
+.all-drinks h1 {
+  padding-bottom: 5px;
+  color: black;
+  font-size: 18px;
+}
+
+.all-drinks p {
+  color: gray;
+  font-size: 15px;
+  font-style: oblique;
+}
+
+.all-drinks-section a {
+  text-decoration: none;
+}
+
+.all-drinks-title {
+  text-align: center;
+  font-size: 40px;
+  color: rgb(199, 253, 245);
+  text-shadow: 6px 6px 18px #98C9B8;
+  font-weight: bolder;
+  margin-top: 25px;
+  margin-bottom: 50px;
 }
