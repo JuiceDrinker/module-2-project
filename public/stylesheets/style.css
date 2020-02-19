@@ -331,6 +331,9 @@ ol {
   margin-bottom: 4%;
 }
 
+.drink-section h1 {
+  text-transform: capitalize;
+}
 .drink-section h1,
 h3,
 p {
