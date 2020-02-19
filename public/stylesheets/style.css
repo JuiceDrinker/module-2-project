@@ -413,3 +413,9 @@ p {
 #checkbox {
   color: black;
 }
+
+#ing-forms label {
+  color: black;
+  margin-top: 15px;
+
+}

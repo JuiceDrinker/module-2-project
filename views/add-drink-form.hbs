@@ -1,27 +1,30 @@
-<h1>ADD NEW DRINK</h1>
-<form action="/add-drink" method="post" id="main-form">
-  <input type="text" name="name" placeholder="Drink name *">
-  <br>
-  <input type="text" name="glass" placeholder="Type of glass">
-  <br>
-  <input type="text" name="category" placeholder="Category">
-  <br>
-  <input type="text" name="garnish" placeholder="Garnish">
-  <br>
-  <input type="text" name="preparation" placeholder="Preparation *">
-  <br>
-  <fieldset id="ing-forms">
-    <label for=''>Add ingredients</label>
-    <button type='button' id="add-ingredient-input">Add</button>
-  </fieldset>
-  <br>
-  <label><input type="checkbox" name="alcohol" checked="true" value="">Alcohol</label>
-  <br>
-  <button>ADD</button>
-</form>
+<div class="drink-section">
+  <h1 class="drink-title">Add your drink:</h1>
 
-{{#if messageError}}
-<p>{{messageError}}</p>
-{{/if}}
+  <form action="/add-drink" method="post" id="main-form">
+    <h3>Drink name:</h3>
+    <input type="text" name="name" placeholder="Drink name *">
+    <h3>Category:</h3>
+    <input type="text" name="category" placeholder="Category">
+    <h3>Type of glass:</h3>
+    <input type="text" name="glass" placeholder="Type of glass">
+    <h3>Garnish:</h3>
+    <input type="text" name="garnish" placeholder="Garnish">
+    <h3>Preparation:</h3>
+    <textarea class="preparation-input" type="text" name="preparation"></textarea>
+    <br>
+    <fieldset id="ing-forms">
+      <label for=''>Add ingredients</label>
+      <button type='button' id="add-ingredient-input">Add</button>
+    </fieldset>
+    <div>
+    <label id="checkbox"><input type="checkbox" name="alcohol" checked="true" value="">Alcohol</label>
+    </div>
+    <button>ADD</button>
+  </form>
+
+  {{#if messageError}}
+  <p>{{messageError}}</p>
+  {{/if}}
 
 <script src="/javascripts/add-drink.js"></script>
