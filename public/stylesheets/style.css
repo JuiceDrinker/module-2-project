@@ -450,10 +450,10 @@ p {
   margin-top: 15px;
 }
 
-.indention-prof p,
+/* .indention-prof p,
 h3 {
-  text-indent: 50px;
-}
+  /* text-indent: 50px; */
+} */
 
 .space-top {
   margin-top: 50px;
@@ -500,4 +500,18 @@ h3 {
 
 .message-error {
   color: red;
+}
+
+.alc input[type="checkbox"] {
+  width: 20px;
+  margin-top: 20px;
+}
+
+.down-left{
+  margin-top: 20px;
+  margin-left: -10px;
+}
+
+.space-btn {
+  margin: 20px 0;
 }
