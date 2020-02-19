@@ -472,6 +472,7 @@ h3 {
 .log-sign button {
   text-align: center;
 }
+
 .username,
 .password {
   display: flex;
@@ -479,6 +480,7 @@ h3 {
   justify-items: space-between;
   justify-content: space-between;
 }
+
 .username input,
 .password input {
   color: black;
