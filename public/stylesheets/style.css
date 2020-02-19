@@ -435,6 +435,13 @@ p {
   margin-top: 20px;
 }
 
+.signup-logo {
+  width: 400px;
+  height: 400px;
+  margin-top: 40px;
+
+}
+
 .login button {
   color: black;
 }
