@@ -57,10 +57,14 @@ sessionRouter.post("/add-drink", (req, res, next) => {
             })
             .catch(err => console.log(err));
 
-            allIngredients.push({ name: ingredient, amount: amount[i], unit: unit[i] });
+          allIngredients.push({
+            name: ingredient,
+            amount: amount[i],
+            unit: unit[i]
+          });
         });
       } else {
-        allIngredients = [{name: ingredients, amount, unit}];
+        allIngredients = [{ name: ingredients, amount, unit }];
       }
 
       Drink.create({
@@ -116,13 +120,12 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
 
   alcohol = req.body.alcohol === "on" ? true : false;
 
-  Drink.find({_id: drinkId})
-    .then( (drinkArr) => {
-      let drink = drinkArr[0]
+  Drink.find({ _id: drinkId })
+    .then(drinkArr => {
+      let drink = drinkArr[0];
       if (String(drink.userId) === String(req.session.currentUser._id)) {
-        console.log("AQUI")
-        Drink.findByIdAndUpdate(drink._id,
-          {
+        console.log("AQUI");
+        Drink.findByIdAndUpdate(drink._id, {
           name,
           glass,
           category,
@@ -130,7 +133,7 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
           garnish,
           preparation,
           alcohol
-          })
+        })
           .then(() => {
             res.redirect("/drinks");
           })
@@ -148,13 +151,13 @@ sessionRouter.post("/modify-drink/:drinkId", (req, res, next) => {
           preparation,
           alcohol,
           userId,
-          private,
+          private
         })
-        .then( (newdrink) => {
-          console.log(newdrink);
-          res.redirect("/drinks");
-        })
-        .catch( (err) => console.log(err));
+          .then(newdrink => {
+            console.log(newdrink);
+            res.redirect("/drinks");
+          })
+          .catch(err => console.log(err));
       }
     })
     .catch(err => console.log(err));
@@ -188,7 +191,7 @@ sessionRouter.get("/drink/:drinkId", (req, res, next) => {
 });
 
 //Router to home page
-sessionRouter.get("/", (req, res, next) => { 
+sessionRouter.get("/", (req, res, next) => {
   res.render("index");
 });
 
@@ -230,8 +233,8 @@ sessionRouter.get("/drinks", (req, res, next) => {
   Drink.find({ private: false })
     .then(publicDrinks => {
       Drink.find({ userId: req.session.currentUser._id })
-      .then(userDrinks => {
-        console.log("db:", publicDrinks.length);
+        .then(userDrinks => {
+          console.log("db:", publicDrinks.length);
           let newArr = [...publicDrinks, ...userDrinks];
           console.log("user:", userDrinks.length);
           let drinksArr = newArr.sort((a, b) => {
@@ -242,7 +245,7 @@ sessionRouter.get("/drinks", (req, res, next) => {
               return -1;
             }
             return 0;
-          })
+          });
           res.render("all-drinks", { drinksArr });
           console.log("concat:", drinksArr.length);
         })
@@ -269,7 +272,7 @@ sessionRouter.get("/add-drink", (req, res, next) => {
 //Router to profile page
 sessionRouter.get("/my-profile", (req, res, next) => {
   const user = req.session.currentUser;
-  res.render("profile", {user});
+  res.render("profile", { user });
 });
 
 //Router to random drink page
@@ -277,7 +280,8 @@ sessionRouter.get("/random-drink", (req, res, next) => {
   Drink.aggregate([{ $sample: { size: 1 } }]) //Returns a random drink from collection "Drinks"
     .then(randomDrinkObj => {
       const drinkObj = randomDrinkObj[0];
-      res.render("random-drink", { drinkObj });
+      const drinkObjID = drinkObj._id;
+      res.redirect(`drink/${drinkObjID}`);
     })
     .catch(err => console.log(err));
 });
