@@ -1,23 +1,25 @@
-<a href="/drinks"><button>BACK</button></a>
-<h1>THE DRINK</h1>
-<h2>{{drink.name}}</h2>
-<p>{{drink.category}}</p>
-<h3>Ingredients:</h3>
-<ul>
-  {{#each drink.ingredients}}
-  <li>{{this.name}} - {{this.amount}} - {{this.unit}}</li>
-  {{/each}}
-</ul>
-<h3>Preparation:</h3>
-<p>{{drink.preparation}}</p>
-{{#if drink.garnish}}
-  <h3>Garnish:</h3>
-  <p>{{drink.garnish}}</p>
-{{/if}}
-
-<a href="/modify-drink/{{drink._id}}"><button>MODIFY THIS DRINK</button></a>
-<br>
-{{#if drink.userId}}
-  <a href="/delete-drink/{{drink._id}}"><button>DELETE THIS DRINK</button></a>
-  <br>
-{{/if}}
+<div class="drink-section">
+  <h1 class="drink-title">{{drink.name}}</h1>
+  <p class="drink-title category">{{drink.category}}</p>
+  <div class="drink-info">
+    <h3>Ingredients:</h3>
+    <ul>
+      {{#each drink.ingredients}}
+      <li><p>{{this.name}} - {{this.amount}} - {{this.unit}}</p></li>
+      {{/each}}
+    </ul>
+    <h3>Preparation:</h3>
+    <p class="indentation-drink">{{drink.preparation}}</p>
+    {{#if drink.garnish}}
+      <h3>Garnish:</h3>
+      <p class="indentation-drink">{{drink.garnish}}</p>
+    {{/if}}
+  </div>
+  <div class="drink-buttons">
+    <a href="/modify-drink/{{drink._id}}">MODIFY THIS DRINK</a>
+    {{#if drink.userId}}
+      <a href="/delete-drink/{{drink._id}}">DELETE THIS DRINK</a>
+    {{/if}}
+    <a href="/drinks">BACK</a>
+  </div>
+</div>
