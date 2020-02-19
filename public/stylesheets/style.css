@@ -184,14 +184,14 @@ ol {
 }
 
 .logo-home {
-  width: 50px;
-  height: 50px;
+  width: 250px;
+  height: 250px;
 }
 
 .logo-home:hover {
   content: url("../images/logo_hover.png");
-  width: 50px;
-  height: 50px;
+  width: 250px;
+  height: 250px;
 }
 .cards {
   z-index: 2;
@@ -303,7 +303,9 @@ ol {
   margin-bottom: 4%;
 }
 
-.drink-section h1, h3, p {
+.drink-section h1,
+h3,
+p {
   color: black;
 }
 
@@ -340,7 +342,7 @@ ol {
   text-indent: 40px;
 }
 
-.drink-buttons a{
+.drink-buttons a {
   text-decoration: none;
   background-color: black;
   border: 1px solid #014479;
