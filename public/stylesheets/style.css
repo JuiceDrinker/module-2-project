@@ -184,17 +184,19 @@ ol {
 
 .logo-container {
   display: fixed;
+  margin-left: 45px;
+  margin-top: 15px;
 }
 
 .logo-home {
-  width: 250px;
-  height: 250px;
+  width: 50px;
+  height: 50px;
 }
 
 .logo-home:hover {
   content: url("../images/logo_hover.png");
-  width: 250px;
-  height: 250px;
+  width: 50px;
+  height: 50px;
 }
 .cards {
   z-index: 2;
@@ -209,10 +211,13 @@ ol {
   border: 1px red solid;
   height: 500px;
   width: 500px;
+  /* padding: 100px; */
+  /* margin-left: 35%; */
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   justify-content: space-around;
+  
 }
 
 .top,
@@ -220,6 +225,27 @@ ol {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 0 auto;
+  align-content: center;
+  
+}
+
+.top button {
+  padding: 0px 20px;
+  background-color: #eafff8;
+  border: 1px solid #98c9b8;
+  border-radius: 25px;
+  box-shadow: 6px 6px 18px #729b8d;
+}
+
+.bot button {
+  padding: 0px 20px;
+  background-color: #eafff8;
+  border: 1px solid #98c9b8;
+  border-radius: 25px;
+  box-shadow: 6px 6px 18px #729b8d;
+  margin-left: 50px;
+  margin-top: -20px;
 }
 
 .top button,
@@ -385,10 +411,6 @@ p {
 .drink-section li {
   color: black;
 }
-
-/* .preparation-input {
-  width: 200px;
-} */
 
 #checkbox {
   color: black;
