@@ -184,14 +184,14 @@ ol {
 }
 
 .logo-home {
-  width: 250px;
-  height: 250px;
+  width: 50px;
+  height: 50px;
 }
 
 .logo-home:hover {
   content: url("../images/logo_hover.png");
-  width: 250px;
-  height: 250px;
+  width: 50px;
+  height: 50px;
 }
 .cards {
   z-index: 2;
@@ -287,4 +287,66 @@ ol {
   font-weight: bolder;
   margin-top: 25px;
   margin-bottom: 50px;
+}
+
+.drink-section {
+  background-color: #eafff8;
+  border: 1px solid #98c9b8;
+  border-radius: 25px;
+  box-shadow: 6px 6px 18px #729b8d;
+  width: 40%;
+  height: auto;
+
+  padding: 50px 35px;
+  margin-left: 30%;
+  /* margin-top: 2%; */
+  margin-bottom: 4%;
+}
+
+.drink-section h1, h3, p {
+  color: black;
+}
+
+.drink-title {
+  font-size: 50px;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.category {
+  font-size: 20px;
+  font-style: oblique;
+  margin: 15px 0;
+  color: darkgrey;
+}
+
+.drink-section h3 {
+  margin: 20px 0px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.drink-info {
+  margin: 45px 0px;
+  text-indent: 20px;
+}
+
+.drink-info li {
+  text-indent: 40px;
+  line-height: 25px;
+}
+
+.indentation-drink {
+  text-indent: 40px;
+}
+
+.drink-buttons a{
+  text-decoration: none;
+  background-color: black;
+  border: 1px solid #014479;
+  border-radius: 25px;
+  box-shadow: 6px 6px 18px #003763;
+  padding: 8px 11px;
+  color: rgb(199, 253, 245);
+  margin: 15px;
 }
