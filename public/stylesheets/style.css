@@ -238,19 +238,19 @@ ol {
   margin-bottom: 7%;
 
   display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-items: baseline;
-	align-content: stretch;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: baseline;
+  align-content: stretch;
 }
 
 /* MINT COLOR: rgb(199, 253, 245) */
 .all-drinks {
-  background-color: #EAFFF8;
-  border: 1px solid #98C9B8;
+  background-color: #eafff8;
+  border: 1px solid #98c9b8;
   border-radius: 25px;
-  box-shadow: 6px 6px 18px #729B8D;
+  box-shadow: 6px 6px 18px #729b8d;
 
   padding: 20px;
   width: 135px;
@@ -259,11 +259,11 @@ ol {
 
   text-overflow: inherit;
   display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: baseline;
-	align-content: stretch;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: baseline;
+  align-content: stretch;
 }
 
 .all-drinks h1 {
@@ -286,7 +286,7 @@ ol {
   text-align: center;
   font-size: 40px;
   color: rgb(199, 253, 245);
-  text-shadow: 6px 6px 18px #98C9B8;
+  text-shadow: 6px 6px 18px #98c9b8;
   font-weight: bolder;
   margin-top: 25px;
   margin-bottom: 50px;

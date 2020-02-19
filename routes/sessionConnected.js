@@ -188,7 +188,7 @@ sessionRouter.get("/drink/:drinkId", (req, res, next) => {
 });
 
 //Router to home page
-sessionRouter.get("/", (req, res, next) => {
+sessionRouter.get("/", (req, res, next) => { 
   res.render("index");
 });
 
