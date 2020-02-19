@@ -225,6 +225,7 @@ ol {
   width: 80%;
   height: 50%;
   margin-left: 9%;
+  margin-bottom: 7%;
 
   display: flex;
 	flex-direction: row;
@@ -269,4 +270,14 @@ ol {
 
 .all-drinks-section a {
   text-decoration: none;
+}
+
+.all-drinks-title {
+  text-align: center;
+  font-size: 40px;
+  color: rgb(199, 253, 245);
+  text-shadow: 6px 6px 18px #98C9B8;
+  font-weight: bolder;
+  margin-top: 25px;
+  margin-bottom: 50px;
 }
