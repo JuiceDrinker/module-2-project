@@ -1,12 +1,15 @@
-<h1>FIND YOUR DRINK</h1>
-<p>Select your ingredients:</p>
-<form action='/search-drinks' method='POST'>
-  <label for=''>Name</label>
-  <input type='text' name='name'>
-  <br>
-  <label for=''>Ingredients</label>
-  <input type='text' name='ingredients'>
-  <br>
-  <a href="/search-drinks"><button>FIND</button></a>
-</form>
-<br>
+<div class="drink-section">
+  <form action='/search-drinks' method='POST'>
+    <h1 class="drink-title">Find your drink</h1>
+    <div class="drink-info">
+      <h3>Search by name:</h3>
+      <input type='text' name='name'>
+      <h3>Search by ingredients:</h3>
+      <input type='text' name='ingredients'>
+      <br>
+    </div>
+  </form>
+  <div class="drink-buttons">
+    <a href="/search-drinks">FIND</a>
+  </div>
+</div>

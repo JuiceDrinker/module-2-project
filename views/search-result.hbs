@@ -1,8 +1,14 @@
-<a href="/search-drinks"><button>GO BACK</button></a>
-<h1>SELECTC ONE:</h1>
-<ul>
+
+<h1 class="all-drinks-title">RESULTS</h1>
+<div class="all-drinks-section">
   {{#each searchQuery}}
-    <li><a href="/drink/{{this._id}}">{{this.name}}</a></li>
+    <a href="/drink/{{this._id}}">
+      <div class="all-drinks">
+        <h1>{{this.name}}</h1>
+        {{#if this.glass}}
+          <p>#{{this.glass}}</p>
+        {{/if}}
+      </div>
+    </a>
   {{/each}}
-</ul>
-<br>
+</div>
