@@ -217,7 +217,6 @@ ol {
   flex-direction: column;
   margin: 0 auto;
   justify-content: space-around;
-  
 }
 
 .top,
@@ -227,7 +226,6 @@ ol {
   justify-content: space-between;
   margin: 0 auto;
   align-content: center;
-  
 }
 
 .top button {
@@ -296,6 +294,7 @@ ol {
   padding-bottom: 5px;
   color: black;
   font-size: 18px;
+  text-transform: capitalize;
 }
 
 .all-drinks p {
@@ -391,7 +390,6 @@ p {
   color: black;
   width: 120px;
   margin-left: 20px;
-
 }
 
 .indentent-input-li {
