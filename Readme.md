@@ -5,6 +5,7 @@
 ## Description
 
 Dont know what to drink tonight? We'll tell you!
+In CocktailMe you can find all the alcohol and non-alcohol drinks, and also, you can create new ones, delete or modify them.
 
 <br>
 
@@ -97,7 +98,7 @@ The url to your repository and to your deployed project
 
 [Repository Link](https://github.com/JuiceDrinker/module-2-project)
 
-[Deploy Link]()
+[Deploy Link](https://cocktail-me.herokuapp.com/)
 
 <br>
 
